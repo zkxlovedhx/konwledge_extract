@@ -1,0 +1,2008 @@
+{
+    "schema_definitions": [
+        {
+            "type": "分析检查(Analysis_Inspection)",
+            "description": "通过数据或模拟（如 CAE）排查模具工艺、结构潜在问题的检查",
+            "properties": [
+                {
+                    "name": "冲裁性检查(Blanking_Feasibility_Check)",
+                    "type": "string",
+                    "description": "评估材料是否适合冲裁加工、冲裁后断面质量能否达标的检查"
+                },
+                {
+                    "name": "弯曲性检查(Bending_Feasibility_Check)",
+                    "type": "string",
+                    "description": "判断材料弯曲成形时是否会产生开裂、起皱，弯曲角度能否保证的检查"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "分析检查的唯一编号"
+                },
+                {
+                    "name": "结构合理性检查(Structural_Rationality_Check)",
+                    "type": "string",
+                    "description": "核查模具结构布局、零部件配合等是否合理，能否满足使用要求的检查"
+                },
+                {
+                    "name": "成型性检查(Formability_Check)",
+                    "type": "string",
+                    "description": "分析材料在冲压成形过程中是否具备良好塑性、能否顺利成形的检查"
+                },
+                {
+                    "name": "2D图完整性检查(TwoD_Drawing_Integrity_Check)",
+                    "type": "string",
+                    "description": "对冲压模具或零件 2D 图纸的尺寸标注、技术要求等是否完整的核验"
+                },
+                {
+                    "name": "材料性能检查(Material_Performance_Check)",
+                    "type": "string",
+                    "description": "验证冲压材料的力学性能（如强度、塑性）是否满足工艺要求的检查"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "分析检查的名称"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "CAE仿真(CAE_Simulation)",
+            "description": "用计算机模拟冲压过程，预测材料成形、模具受力等情况的技术",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "CAE仿真的名称"
+                },
+                {
+                    "name": "网格角度(Mesh_Angle)",
+                    "type": "string",
+                    "description": "板料网格划分方向与轧制方向的夹角，用于分析材料各向异性对成形的影响"
+                },
+                {
+                    "name": "网格层数(Mesh_Layers)",
+                    "type": "string",
+                    "description": "板料厚度方向划分的网格数量，影响厚度方向变形的模拟准确性"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "CAE仿真的唯一编号"
+                },
+                {
+                    "name": "网格细化等级(Mesh_Refinement_Level)",
+                    "type": "string",
+                    "description": "CAE 仿真中对高变形区域网格细化的程度设定，平衡计算效率与精度"
+                },
+                {
+                    "name": "工具体网格尺寸_mm_(Tool_Mesh_Size_mm)",
+                    "type": "string",
+                    "description": "CAE 仿真中模具工作部件网格的边长，影响模具受力模拟精度"
+                },
+                {
+                    "name": "软件名称(Software_Name)",
+                    "type": "string",
+                    "description": "CAE仿真用到的软件的名称"
+                },
+                {
+                    "name": "工具体速度(Tool_Speed)",
+                    "type": "string",
+                    "description": "CAE 仿真中模具运动部件的速度参数，模拟实际冲压时的冲压速度"
+                },
+                {
+                    "name": "单元类型(Element_Type)",
+                    "type": "string",
+                    "description": "CAE 仿真中网格单元的数学模型类型（如壳单元、实体单元），适配不同成形场景"
+                },
+                {
+                    "name": "时间步长(Time_Step)",
+                    "type": "string",
+                    "description": "CAE 仿真中冲压过程的时间间隔单位，控制仿真计算的时间精度"
+                },
+                {
+                    "name": "板料网格尺寸(Sheet_Metal_Mesh_Size)",
+                    "type": "string",
+                    "description": "冲压板材在 CAE 仿真中划分的网格边长，决定材料成形模拟精细度"
+                },
+                {
+                    "name": "网格细化角度(Mesh_Refinement_Angle)",
+                    "type": "string",
+                    "description": "触发网格局部细化的临界角度值，用于精准捕捉弯曲等大变形区域"
+                },
+                {
+                    "name": "摩擦系数(Friction_Coefficient)",
+                    "type": "string",
+                    "description": "CAE 仿真中设定的模具与板料接触面摩擦特性参数，影响成形力模拟结果"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "补偿策略(Compensation_Strategy)",
+            "description": "为抵消回弹等缺陷，对模具尺寸或冲压工艺采取的调整方案",
+            "properties": [
+                {
+                    "name": "回弹工序(Springback_Process)",
+                    "type": "string",
+                    "description": "冲压件成形后，测量并分析其回弹量、确定回弹规律的工艺环节"
+                },
+                {
+                    "name": "效果评估(Effect_Evaluation)",
+                    "type": "string",
+                    "description": "评估回弹补偿后，冲压件尺寸精度、成形稳定性是否达标的检测过程"
+                },
+                {
+                    "name": "补偿工序(Compensation_Process)",
+                    "type": "string",
+                    "description": "根据回弹数据，对模具型面或工艺参数进行调整以抵消回弹的工序"
+                },
+                {
+                    "name": "说明(Description)",
+                    "type": "string",
+                    "description": "对回弹补偿策略的原理、操作步骤及核心参数的文字说明"
+                },
+                {
+                    "name": "迭代次数(Number_of_Iterations)",
+                    "type": "string",
+                    "description": "回弹补偿过程中，通过调整模具参数、验证成形效果的循环次数"
+                },
+                {
+                    "name": "策略类型(Strategy_Type)",
+                    "type": "string",
+                    "description": "按回弹补偿逻辑划分的策略类别（如基于 CAE 仿真的补偿、经验参数补偿）"
+                },
+                {
+                    "name": "使用场景(Application_Scenario)",
+                    "type": "string",
+                    "description": "特定回弹补偿策略适用的冲压场景（如弯曲件补偿、拉深件补偿）"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "补偿策略的唯一编号"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "回弹补偿的名称"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "修改(Amend)",
+                    "description": "知识图谱，补偿策略与模具类型之间的关系，补偿策略-修改->模具类型",
+                    "end_node_type": "模具类型(Mold_Type)"
+                }
+            ]
+        },
+        {
+            "type": "用户需求导入(DemandImport)",
+            "description": "用户需求导入，结构设计和工艺优化作业流程的起点",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "数据实体的名称"
+                },
+                {
+                    "name": "设备(Equipment)",
+                    "type": "string",
+                    "description": "用户需求导入的设备属性，用于映射到对应的数据实体"
+                },
+                {
+                    "name": "2D图(Graph2D)",
+                    "type": "string",
+                    "description": "该属性用于路由到具体的数据实体，即用户需求导入中的2D图"
+                },
+                {
+                    "name": "3D数模(DigitalModel3D)",
+                    "type": "string",
+                    "description": "用户需求导入中的3D数模，该属性用于映射到对应的数据实体"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "用户需求导入的唯一编号"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "包含-23(Contain_23)",
+                    "description": "知识图谱，用户需求导入和2D图之间的关系，用户需求导入-包含->2D图",
+                    "end_node_type": "2D图(Graph2D)"
+                },
+                {
+                    "type": "包含-24(Contain_24)",
+                    "description": "知识图谱，用户需求导入和3D数模之间的关系，用户需求导入-包含->3D数模",
+                    "end_node_type": "3D数模(DigitalModel3D)"
+                },
+                {
+                    "type": "包含-25(Contain_25)",
+                    "description": "知识图谱，用户需求导入和设备之间的关系，用户需求导入-包含->设备",
+                    "end_node_type": "设备(Equipment)"
+                },
+                {
+                    "type": "技术要求(TechnicalRequirement)",
+                    "description": "知识图谱，用户需求导入和工艺之间的关系，用户需求导入-技术要求->工艺",
+                    "end_node_type": "工艺(Process)"
+                }
+            ]
+        },
+        {
+            "type": "3D数模(DigitalModel3D)",
+            "description": "在需求阶段，由用户提供的3D图，包括重量，料厚等属性",
+            "properties": [
+                {
+                    "name": "材质(Materials)",
+                    "type": "string",
+                    "description": "3D数模要求的材质"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "3D数模的具体名称"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "3D数模的唯一编号"
+                },
+                {
+                    "name": "料厚(ThicknessOfTheMaterial)",
+                    "type": "string",
+                    "description": "3D数模要求的料厚"
+                },
+                {
+                    "name": "重量(Weight)",
+                    "type": "string",
+                    "description": "3D数模要求的重量"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "设备(Equipment)",
+            "description": "在需求阶段，由用户提供的设备要求，包括编号，品牌，吨位等属性",
+            "properties": [
+                {
+                    "name": "有无气顶(AirCap)",
+                    "type": "string",
+                    "description": "该属性描述了设备有无气顶"
+                },
+                {
+                    "name": "最大允许模具尺寸(MaxMoldSize)",
+                    "type": "string",
+                    "description": "该属性描述了设备的最大允许模具尺寸"
+                },
+                {
+                    "name": "送料高度(FeedingHeight)",
+                    "type": "string",
+                    "description": "该属性描述了设备的送料高度"
+                },
+                {
+                    "name": "传送带高度(ConveyorBeltHeight)",
+                    "type": "string",
+                    "description": "该属性描述了设备的传送带高度"
+                },
+                {
+                    "name": "送料方向(FeedingDirection)",
+                    "type": "string",
+                    "description": "该属性描述了设备送料方向"
+                },
+                {
+                    "name": "最大承受模具重量(MaxMoldWeight)",
+                    "type": "string",
+                    "description": "该属性描述了设备的最大承受模具重量"
+                },
+                {
+                    "name": "设备来源(Origin)",
+                    "type": "string",
+                    "description": "该属性描述了设备的来源，一般填用户名称"
+                },
+                {
+                    "name": "传送带宽度(ConveyorBeltWidth)",
+                    "type": "string",
+                    "description": "该属性描述了设备的传送带宽度"
+                },
+                {
+                    "name": "编号(SerialNumber)",
+                    "type": "string",
+                    "description": "该属性描述了设备的编号"
+                },
+                {
+                    "name": "送料机厚度(ThicknessOfTheFeedingMachine)",
+                    "type": "string",
+                    "description": "该属性描述了设备的送料机厚度"
+                },
+                {
+                    "name": "传送带深入冲床距离(ConveyorInsertionDepth)",
+                    "type": "string",
+                    "description": "该属性描述了设备的传送带深入冲床距离"
+                },
+                {
+                    "name": "最小允许模具尺寸(MinMoldSize)",
+                    "type": "string",
+                    "description": "该属性描述了设备的最小允许模具尺寸"
+                },
+                {
+                    "name": "下模码模尺寸(DownPlateMountingHolePattern)",
+                    "type": "string",
+                    "description": "该属性描述了设备的下模码模尺寸"
+                },
+                {
+                    "name": "传送杠最小开合(MinOpening)",
+                    "type": "string",
+                    "description": "该属性描述了设备的传送杠最小开合"
+                },
+                {
+                    "name": "最大装模高(MaximumMoldHeight)",
+                    "type": "string",
+                    "description": "该属性描述了设备的最大装模高"
+                },
+                {
+                    "name": "自动码模行程(AutomaticMoldClampingStroke)",
+                    "type": "string",
+                    "description": "该属性描述了设备的自动码模行程"
+                },
+                {
+                    "name": "传送杠尺寸(ConveyorBarSize)",
+                    "type": "string",
+                    "description": "该属性描述了设备的传送杠尺寸"
+                },
+                {
+                    "name": "机械手抬升(LiftTheRobotArm)",
+                    "type": "string",
+                    "description": "该属性描述了设备的机械手抬升"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "该属性描述了设备的名称"
+                },
+                {
+                    "name": "行程(MovementRange)",
+                    "type": "string",
+                    "description": "该属性描述了设备的行程"
+                },
+                {
+                    "name": "吨位(Tonnage)",
+                    "type": "string",
+                    "description": "该属性描述了设备的吨位"
+                },
+                {
+                    "name": "国家及工厂(CountryAndFactory)",
+                    "type": "string",
+                    "description": "该属性描述了设备所属的国家及工厂"
+                },
+                {
+                    "name": "上模码模尺寸(TopPlateMountingHolePattern)",
+                    "type": "string",
+                    "description": "该属性描述了设备的上模码模尺寸"
+                },
+                {
+                    "name": "滑块可调量(SliderRange)",
+                    "type": "string",
+                    "description": "该属性描述了设备的滑块可调量"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "设备的唯一编号"
+                },
+                {
+                    "name": "快速定位(RapidTraverse)",
+                    "type": "string",
+                    "description": "该属性描述了设备的快速定位"
+                },
+                {
+                    "name": "机械手步距(StepDistance)",
+                    "type": "string",
+                    "description": "该属性描述了设备的机械手步距"
+                },
+                {
+                    "name": "品牌(Brand)",
+                    "type": "string",
+                    "description": "该属性描述了设备的品牌"
+                },
+                {
+                    "name": "传送杠到底面距离(ConveyorBarToBottomDistance)",
+                    "type": "string",
+                    "description": "该属性描述了设备的传送杠到底面距离"
+                },
+                {
+                    "name": "最大承受上模重量(MaxUpperMoldWeight)",
+                    "type": "string",
+                    "description": "该属性描述了设备的最大承受上模重量"
+                },
+                {
+                    "name": "送料机深入冲床距离(FeederInsertionDepth)",
+                    "type": "string",
+                    "description": "该属性描述了设备的送料机深入冲床距离"
+                },
+                {
+                    "name": "传送杠最大开合(MaxOpening)",
+                    "type": "string",
+                    "description": "该属性描述了设备的传送杠最大开合"
+                },
+                {
+                    "name": "机械手退出行程(RobotWithdrawalStroke)",
+                    "type": "string",
+                    "description": "该属性描述了设备的机械手的退出行程"
+                },
+                {
+                    "name": "卷料宽度(CoilWidth)",
+                    "type": "string",
+                    "description": "该属性描述了设备的卷料宽度"
+                },
+                {
+                    "name": "闭合高度(ClosedHeight)",
+                    "type": "string",
+                    "description": "该属性描述了设备的闭合高度"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "支持(Support)",
+                    "description": "知识图谱，设备和模具类型之间的关系，设备-支持->模具类型",
+                    "end_node_type": "模具类型(Mold_Type)"
+                }
+            ]
+        },
+        {
+            "type": "2D图(Graph2D)",
+            "description": "在需求阶段，由用户提供的2D图，包括基准，公差等属性",
+            "properties": [
+                {
+                    "name": "文件(File)",
+                    "type": "string",
+                    "description": "2D图的对应文件"
+                },
+                {
+                    "name": "文件名称(File_Name)",
+                    "type": "string",
+                    "description": "该数据实体的名称"
+                },
+                {
+                    "name": "位置度公差(PositionalTolerance)",
+                    "type": "string",
+                    "description": "2D图中识别出来的位置度公差属性，单位是mm"
+                },
+                {
+                    "name": "剪口公差(IdentifiedNotchTolerance)",
+                    "type": "string",
+                    "description": "2D图中识别出来的剪口公差属性，单位是mm"
+                },
+                {
+                    "name": "孔公差(HoleTolerance)",
+                    "type": "string",
+                    "description": "2D图中识别出来的孔公差属性，单位是mm"
+                },
+                {
+                    "name": "一般面公差(GeneralSurfaceTolerance)",
+                    "type": "string",
+                    "description": "2D图中识别出来的一般面公差属性，单位是mm"
+                },
+                {
+                    "name": "基准(Standard)",
+                    "type": "string",
+                    "description": "2D图中的基准"
+                },
+                {
+                    "name": "平面度公差(FlatnessTolerance)",
+                    "type": "string",
+                    "description": "2D图中识别出来的平面度公差属性，单位是mm"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "2D图的唯一编号"
+                },
+                {
+                    "name": "装配面公差值(AssemblySurfaceToleranceValue)",
+                    "type": "string",
+                    "description": "2D图中识别出来的装配面公差值，单位是mm"
+                },
+                {
+                    "name": "单边公差(UnilateralTolerance)",
+                    "type": "string",
+                    "description": "2D图中识别出来的单边公差属性，单位是mm"
+                }
+            ],
+            "required": [],
+            "outgoing_relations": []
+        },
+        {
+            "type": "迭代(Iteration)",
+            "description": "通过多次优化调整，逐步完善模具设计或冲压工艺的过程",
+            "properties": [
+                {
+                    "name": "迭代号(Iteration_Number)",
+                    "type": "string",
+                    "description": "标记回弹补偿迭代过程的序号，用于区分不同轮次调整"
+                },
+                {
+                    "name": "是否收敛(Convergence_Status_Yes_No)",
+                    "type": "string",
+                    "description": "判定当前回弹迭代中，冲压件尺寸精度、模具参数是否达到稳定标准的状态"
+                },
+                {
+                    "name": "日期(Date_)",
+                    "type": "string",
+                    "description": "记录每一轮回弹迭代工作开展或完成的具体日期"
+                },
+                {
+                    "name": "上一次问题简述(Brief_Description_of_Previous_Issues)",
+                    "type": "string",
+                    "description": "简要说明上一轮回弹迭代中存在的问题，如 “零件弯曲角度回弹超差 0.5°”"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "迭代的唯一编号"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "用于标识回弹迭代相关记录的名称"
+                },
+                {
+                    "name": "收敛依据(Convergence_Basis)",
+                    "type": "string",
+                    "description": "判断回弹迭代是否达标的依据，如 “冲压件关键尺寸误差≤0.1mm、连续 2 轮迭代数据稳定”"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "产出(Output)",
+                    "description": "知识图谱，迭代与结果之间的关系，迭代-产出->结果",
+                    "end_node_type": "结果(Result)"
+                }
+            ]
+        },
+        {
+            "type": "材料(Material)",
+            "description": "冲压模具相关的各类物质，既包括制作模具本身的材料，也包括生产中辅助模具运作的材料",
+            "properties": [
+                {
+                    "name": "工艺材料(Process_Material)",
+                    "type": "string",
+                    "description": "冲压模具工艺中，辅助完成加工、装配等环节的材料（如切削液、润滑剂）"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "材料的具体名称"
+                },
+                {
+                    "name": "结构材料(Structural_Material)",
+                    "type": "string",
+                    "description": "制造冲压模具凸模、凹模等核心结构，需具备高强度、高耐磨性的材料（如模具钢）"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "材料的唯一编号"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "适用于(Apply_2)",
+                    "description": "知识图谱，材料与模具类型之间的关系，材料-适用于->模具类型",
+                    "end_node_type": "模具类型(Mold_Type)"
+                },
+                {
+                    "type": "包含-26(Contain_26)",
+                    "description": "知识图谱，材料与工艺材料之间的关系，材料-包含->工艺材料",
+                    "end_node_type": "工艺材料(Process_Material)"
+                },
+                {
+                    "type": "包含-34(Contain_34)",
+                    "description": "知识图谱，材料与结构材料之间的关系，材料-包含->结构材料",
+                    "end_node_type": "结构材料(Structural_Material)"
+                }
+            ]
+        },
+        {
+            "type": "材料加工工艺(Material_Processing_Technology)",
+            "description": "将原材料加工成模具零件的方法（如锻造、铣削、热处理）",
+            "properties": [
+                {
+                    "name": "材料名称(Material_Name)",
+                    "type": "string",
+                    "description": "用于冲压加工或模具制造的材料具体名称（如 “SPCC 冷轧钢板”“H13 模具钢”）"
+                },
+                {
+                    "name": "工艺过程描述(Process_Flow_Description)",
+                    "type": "string",
+                    "description": "对工艺各步骤操作流程、先后顺序及关键要求的详细说明（如 “板材送料→定位→冲裁→卸料”）"
+                },
+                {
+                    "name": "工艺名称(Process_Name)",
+                    "type": "string",
+                    "description": "标识材料加工具体工艺的名称"
+                },
+                {
+                    "name": "常见牌号(Common_Grade)",
+                    "type": "string",
+                    "description": "某类材料在工业中常用的具体型号（如冲压板材常见牌号 DC01、模具钢常见牌号 Cr12MoV）"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "材料加工工艺的唯一编号"
+                },
+                {
+                    "name": "工艺描述(Process_Description)",
+                    "type": "string",
+                    "description": "对特定工艺的核心原理、作用及应用场景的简要说明"
+                },
+                {
+                    "name": "材料类型(Material_Type)",
+                    "type": "string",
+                    "description": "按材料属性或用途划分的类别"
+                },
+                {
+                    "name": "工艺参数(Process_Parameters)",
+                    "type": "string",
+                    "description": "工艺实施中需控制的关键技术参数（如冲压工艺的冲裁间隙、材料热处理的淬火温度）"
+                },
+                {
+                    "name": "工艺类型(Process_Type)",
+                    "type": "string",
+                    "description": "按加工目的或方式划分的工艺类别"
+                }
+            ],
+            "required": [],
+            "outgoing_relations": []
+        },
+        {
+            "type": "测量点(Measuring_Point)",
+            "description": "用于检测冲压件尺寸精度或模具结构精度的特定点位",
+            "properties": [
+                {
+                    "name": "Z坐标值(Z_Coordinate_Value)",
+                    "type": "string",
+                    "description": "冲压模具中部件高度、型面深度等在 Z 轴方向的坐标数值，影响冲压件厚度与成形质量"
+                },
+                {
+                    "name": "关联零件(Associated_Parts)",
+                    "type": "string",
+                    "description": "与冲压模具当前特征或部件存在装配、功能关联的零件"
+                },
+                {
+                    "name": "位置描述(Position_Description)",
+                    "type": "string",
+                    "description": "用文字明确冲压模具关键特征所处位置的说明（如 “凹模上表面距前端面 150mm 处的定位孔”），便于操作与检修"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "测量点的唯一编号"
+                },
+                {
+                    "name": "Y坐标值(Y_Coordinate_Value)",
+                    "type": "string",
+                    "description": "冲压模具相关特征在 Y 轴方向的坐标数值"
+                },
+                {
+                    "name": "X坐标值(X_Coordinate_Value)",
+                    "type": "string",
+                    "description": "冲压模具型面、定位销或零件特征在 X 轴方向的坐标数值，用于精准定位"
+                },
+                {
+                    "name": "公差_mm(Tolerance_mm)",
+                    "type": "string",
+                    "description": "冲压模具坐标尺寸或特征尺寸的允许偏差范围，单位为毫米，直接关系零件装配适配性"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "测量点的名称"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "模具组件(Mold_Assembly)",
+            "description": "组成模具的功能单元（如模架、导向组件、顶料组件）",
+            "properties": [
+                {
+                    "name": "模具组件名称(Mold_Component_Name)",
+                    "type": "string",
+                    "description": "标识冲压模具中特定功能组件的称谓（如 “凸模组件”“导柱导套组件”），用于区分不同功能模块"
+                },
+                {
+                    "name": "模具结构层级(Mold_Structure_Level)",
+                    "type": "string",
+                    "description": "模具组件在模具整体结构中的层级归属（如 “凸模组件属于模具上模结构层级”）"
+                },
+                {
+                    "name": "组成零件(Constituent_Parts)",
+                    "type": "string",
+                    "description": "构成模具组件的具体零件（如 “凹模组件组成零件：凹模本体、凹模固定板、定位销”）"
+                },
+                {
+                    "name": "模具类型(Mold_Type)",
+                    "type": "string",
+                    "description": "模具组件适配的冲压模具类别（如 “拉深凸模组件适配模具类型：拉深模”）"
+                },
+                {
+                    "name": "安装位置(Installation_Position)",
+                    "type": "string",
+                    "description": "模具组件在整套冲压模具中的具体安装位置（如 “卸料板组件安装位置：凸模外侧，位于上模座与凸模固定板之间”）"
+                },
+                {
+                    "name": "英文名称(English_Name)",
+                    "type": "string",
+                    "description": "冲压模具组件对应的英文称谓（如 “Punch Assembly”“Guide Pin and Bushing Assembly”）"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "对模具组件核心功能、结构形态及在冲压流程中作用的简要说明（如 “导柱导套组件：保证凸凹模合模精度的导向部件”）"
+                },
+                {
+                    "name": "设计参数_参考值_(Design_Parameters_Reference_Values)",
+                    "type": "string",
+                    "description": "模具组件设计中可参考的关键技术数值（如 “导柱直径设计参数参考值：20-30mm，根据模具吨位选取”）"
+                },
+                {
+                    "name": "适用工序(Applicable_Process)",
+                    "type": "string",
+                    "description": "模具组件适用的冲压加工工序（如 “落料凹模组件适用工序：落料工序”）"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "模具组件的唯一编号"
+                },
+                {
+                    "name": "设计要点(Design_Key_Points)",
+                    "type": "string",
+                    "description": "模具组件设计时需重点关注的关键要求（如 “凸模组件设计要点：刃口强度、与固定板的配合间隙”）"
+                },
+                {
+                    "name": "标准依据(Standard_Basis)",
+                    "type": "string",
+                    "description": "模具组件设计、制造需遵循的标准（如国标 GB/T 12446、行业标准 JB/T 7648）"
+                }
+            ],
+            "required": [],
+            "outgoing_relations": [
+                {
+                    "type": "组成-2(Compose_2)",
+                    "description": "知识图谱，模具组件与模具类型之间的关系，模具组件-组成->模具类型",
+                    "end_node_type": "模具类型(Mold_Type)"
+                },
+                {
+                    "type": "包含-33(Contain_33)",
+                    "description": "知识图谱，模具组件与模具零件之间的关系，模具组件-包含->模具零件",
+                    "end_node_type": "模具零件(Mold_Part)"
+                }
+            ]
+        },
+        {
+            "type": "模具零件(Mold_Part)",
+            "description": "模具的单个基础零件（如凸模、凹模、导柱）",
+            "properties": [
+                {
+                    "name": "加工工艺(Processing_Technology)",
+                    "type": "string",
+                    "description": "模具零件从毛坯到成品的加工方法（如凸模加工工艺 “锻造→退火→铣削→磨削→抛光”）"
+                },
+                {
+                    "name": "别名(Alias)",
+                    "type": "string",
+                    "description": "模具零件除标准名称外的常用替代名称（如 “顶料销” 别名 “顶杆”，“凹模” 别名 “下模仁”）"
+                },
+                {
+                    "name": "设计参数(Design_Parameters)",
+                    "type": "string",
+                    "description": "模具零件设计时需确定的关键技术参数（如导柱设计参数 “直径”“长度”“配合公差”）"
+                },
+                {
+                    "name": "安装方式(Installation_Method)",
+                    "type": "string",
+                    "description": "模具零件在模具整体结构中的安装固定方式（如 “导柱通过过盈配合安装于下模座”“卸料螺钉通过螺纹连接安装于上模座”）"
+                },
+                {
+                    "name": "结构形式(Structural_Form)",
+                    "type": "string",
+                    "description": "模具零件的结构形态（如 “导柱结构形式：圆柱形带台阶”“卸料板结构形式：平板式带安装孔”）"
+                },
+                {
+                    "name": "功能描述(Function_Description)",
+                    "type": "string",
+                    "description": "对模具零件在冲压过程中所起作用的说明（如 “卸料板：冲压后将工件从凸模上剥离的零件”）"
+                },
+                {
+                    "name": "零件类别(Part_Category)",
+                    "type": "string",
+                    "description": "按功能或用途划分的模具零件类别（如 “成型类零件”“导向类零件”“紧固件类零件”）"
+                },
+                {
+                    "name": "分类(Classification)",
+                    "type": "string",
+                    "description": "对模具零件按特定维度进一步细分（如导向类零件可分类为 “导柱”“导套”“定位销”）"
+                },
+                {
+                    "name": "材料(Material)",
+                    "type": "string",
+                    "description": "制造模具零件所用的材料（如凸模常用材料 “Cr12MoV”，导柱常用材料 “SUJ2”）"
+                },
+                {
+                    "name": "热处理(Heat_Treatment)",
+                    "type": "string",
+                    "description": "为提升模具零件性能（硬度、韧性等）进行的加热冷却处理（如 “淬火 + 回火”“渗氮处理”）"
+                },
+                {
+                    "name": "英文名称(English_Name)",
+                    "type": "string",
+                    "description": "冲压模具零件对应的英文称谓（如 “Punch”“Guide Pin”“Stripper Screw”），适配国际技术交流场景"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "模具零件的唯一编号"
+                },
+                {
+                    "name": "尺寸参数(Dimensional_Parameters)",
+                    "type": "string",
+                    "description": "模具零件的具体尺寸数据（如 “凸模尺寸参数：长度 80mm、刃口直径 20mm、柄部直径 15mm”）"
+                },
+                {
+                    "name": "表面处理(Surface_Treatment)",
+                    "type": "string",
+                    "description": "为改善模具零件表面性能（耐磨性、防锈性等）进行的处理（如 “镀铬”“发黑”“喷砂”）"
+                },
+                {
+                    "name": "模具零件名称(Mold_Part_Name)",
+                    "type": "string",
+                    "description": "标识冲压模具中单个功能零件的称谓（如 “凸模”“导柱”“卸料螺钉”），用于区分不同零件"
+                }
+            ],
+            "required": [],
+            "outgoing_relations": []
+        },
+        {
+            "type": "模具类型(Mold_Type)",
+            "description": "按冲压功能划分的模具种类（如落料模、拉深模、弯曲模）",
+            "properties": [
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "模具类型的唯一编号"
+                },
+                {
+                    "name": "组件(Components)",
+                    "type": "string",
+                    "description": "构成某类冲压模具、承担核心功能的模块（如 “落料模组件：凸模组件、凹模组件、卸料组件”）"
+                },
+                {
+                    "name": "标准规范(Standards_and_Specifications)",
+                    "type": "string",
+                    "description": "某类冲压模具设计、制造及验收需遵循的标准（如国标 GB/T 12446、行业标准 JB/T 7648）"
+                },
+                {
+                    "name": "模具上级类型(Upper_Level_Mold_Type)",
+                    "type": "string",
+                    "description": "某类冲压模具在分类体系中所属的上一级类别（如 “落料模” 的上级类型为 “分离工序模”，“拉深模” 的上级类型为 “成形工序模”）"
+                },
+                {
+                    "name": "成型工艺(Molding_Process)",
+                    "type": "string",
+                    "description": "某类冲压模具对应的冲压加工工艺（如 “弯曲模对应成型工艺：板材弯曲成形”，“复合模对应成型工艺：落料 + 冲孔复合成形”）"
+                },
+                {
+                    "name": "硬度_HRC_(Hardness_HRC)",
+                    "type": "string",
+                    "description": "冲压模具关键部件（如凸模、凹模）经热处理后的硬度值（单位：HRC），如 “落料凹模硬度：58-62HRC”"
+                },
+                {
+                    "name": "表面粗糙度(Surface_Roughness)",
+                    "type": "string",
+                    "description": "冲压模具型面及关键表面的粗糙度指标（单位：μm），如 “拉深模凹模型面表面粗糙度：Ra≤0.8μm”"
+                },
+                {
+                    "name": "模具类型名称(Mold_Type_Name)",
+                    "type": "string",
+                    "description": "标识冲压模具按功能或工序划分的具体类型称谓（如 “落料模”“拉深模”“弯曲模”），用于区分不同用途模具"
+                },
+                {
+                    "name": "零件(Parts)",
+                    "type": "string",
+                    "description": "组成冲压模具各组件的单个功能件（如 “拉深模零件：拉深凸模、拉深凹模、压边圈”）"
+                },
+                {
+                    "name": "材料(Material)",
+                    "type": "string",
+                    "description": "制造某类冲压模具所用的材料（如落料模常用材料 “Cr12MoV”，简易弯曲模常用材料 “45 钢”）"
+                }
+            ],
+            "required": [],
+            "outgoing_relations": [
+                {
+                    "type": "设计-3(Design_3)",
+                    "description": "知识图谱，模具类型与结构设计之间的关系，模具类型-设计->结构设计",
+                    "end_node_type": "结构设计(Structural_Design)"
+                },
+                {
+                    "type": "预测-1(Predict_1)",
+                    "description": "知识图谱，模具类型与回弹之间的关系，模具类型-预测->回弹",
+                    "end_node_type": "回弹(Springback)"
+                },
+                {
+                    "type": "需要(Require)",
+                    "description": "知识图谱，模具类型与设备之间的关系，模具类型-需要->设备",
+                    "end_node_type": "设备(Equipment)"
+                },
+                {
+                    "type": "使用-2(Use_2)",
+                    "description": "知识图谱，模具类型与工艺之间的关系，模具类型-使用->工艺",
+                    "end_node_type": "工艺(Process)"
+                }
+            ]
+        },
+        {
+            "type": "精算(Precise_Calculation)",
+            "description": "精准计算冲压模具工艺参数（如冲压力、材料损耗）或结构尺寸的过程",
+            "properties": [
+                {
+                    "name": "测量点(Measuring_Point)",
+                    "type": "string",
+                    "description": "在模具或冲压件上预设的、用于检测尺寸精度的特定位置（如零件关键孔位中心、弯曲角度顶点，用于验证回弹补偿效果）"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "精算的唯一编号"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "精算的名称"
+                },
+                {
+                    "name": "补偿策略(Compensation_Strategy)",
+                    "type": "string",
+                    "description": "针对冲压件回弹问题，制定的模具型面调整、工艺参数优化方案（如基于 CAE 仿真的模具型面反向补偿、调整压边力抑制回弹）"
+                },
+                {
+                    "name": "工艺参数集(Process_Parameter_Set)",
+                    "type": "string",
+                    "description": "冲压过程中需精准控制的全套关键技术参数组合（如冲裁速度、压边力、凸凹模间隙、成形温度等，需匹配零件材料与成形需求）"
+                },
+                {
+                    "name": "回弹(Springback)",
+                    "type": "string",
+                    "description": "冲压件成形后，因材料弹性恢复导致尺寸、形状偏离模具型面的现象，是影响冲压件精度的核心问题（如弯曲件角度回弹、拉深件边缘翘曲）"
+                },
+                {
+                    "name": "迭代(Iteration)",
+                    "type": "string",
+                    "description": "通过 “CAE 仿真分析回弹→模具 / 工艺调整→实物冲压检测→数据反馈优化” 的循环流程，逐步降低回弹误差、提升精度的过程"
+                },
+                {
+                    "name": "CAE仿真(CAE_Simulation)",
+                    "type": "string",
+                    "description": "通过计算机辅助工程软件对冲压成形过程的力、位移、回弹量等数据进行模拟计算，为精算模具调整成本、工艺优化收益提供量化依据的技术手段"
+                },
+                {
+                    "name": "结果(Result)",
+                    "type": "string",
+                    "description": "精算后输出的成果（如 CAE 仿真精算的回弹预测值、迭代后成本与精度平衡的工艺方案、零件合格率精算结果）"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "包含-27(Contain_27)",
+                    "description": "知识图谱，精算与CAE仿真之间的关系，精算-包含->CAE仿真",
+                    "end_node_type": "CAE仿真(CAE_Simulation)"
+                },
+                {
+                    "type": "包含-28(Contain_28)",
+                    "description": "知识图谱，精算与回弹之间的关系，精算-包含->回弹",
+                    "end_node_type": "回弹(Springback)"
+                },
+                {
+                    "type": "包含-29(Contain_29)",
+                    "description": "知识图谱，精算与补偿策略之间的关系，精算-包含->补偿策略",
+                    "end_node_type": "补偿策略(Compensation_Strategy)"
+                },
+                {
+                    "type": "包含-30(Contain_30)",
+                    "description": "知识图谱，精算与工艺参数集之间的关系，精算-包含->工艺参数集",
+                    "end_node_type": "工艺参数集(Process_Parameter_Set)"
+                },
+                {
+                    "type": "包含-31(Contain_31)",
+                    "description": "知识图谱，精算与迭代之间的关系，精算-包含->迭代",
+                    "end_node_type": "迭代(Iteration)"
+                },
+                {
+                    "type": "优化-2(Optimize_2)",
+                    "description": "知识图谱，精算与模具类型之间的关系，精算-优化->模具类型",
+                    "end_node_type": "模具类型(Mold_Type)"
+                },
+                {
+                    "type": "使用-3(Use_3)",
+                    "description": "知识图谱，精算与材料之间的关系，精算-使用->材料",
+                    "end_node_type": "材料(Material)"
+                }
+            ]
+        },
+        {
+            "type": "工艺(Process)",
+            "description": "制作冲压模具或用模具进行冲压生产的技术方法，例如模具的锻造工艺、冲压件的落料工艺等",
+            "properties": [
+                {
+                    "name": "工序序号(Process_Sequence_Number)",
+                    "type": "string",
+                    "description": "冲压生产中各工序的先后顺序编号"
+                },
+                {
+                    "name": "工艺参数(Process_Parameters)",
+                    "type": "string",
+                    "description": "冲压工艺的关键技术数值"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "冲压模具相关工序的唯一标识名称，如拉延工艺、弯曲工艺、翻边工艺等"
+                },
+                {
+                    "name": "模具材质(Mold_Material)",
+                    "type": "string",
+                    "description": "制造冲压模具所用材料"
+                },
+                {
+                    "name": "材料(Material)",
+                    "type": "string",
+                    "description": "冲压模具相关物质"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "工艺的唯一编号"
+                },
+                {
+                    "name": "模具类型(Mold_Type)",
+                    "type": "string",
+                    "description": "按冲压功能分的模具种类"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "对冲压模具工艺内容的具体说明"
+                },
+                {
+                    "name": "回弹工序(Springback_Process)",
+                    "type": "string",
+                    "description": "抵消冲压件回弹变形的专门工序"
+                },
+                {
+                    "name": "压料力(Blank_Holder_Force)",
+                    "type": "string",
+                    "description": "冲压时压料装置施加的压力（防止材料起皱）"
+                },
+                {
+                    "name": "类型(Type)",
+                    "type": "string",
+                    "description": "按工艺属性划分的类别"
+                },
+                {
+                    "name": "工艺过程描述(Process_Description)",
+                    "type": "string",
+                    "description": "对冲压工序操作步骤的文字说明"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "适用-1(Apply_1)",
+                    "description": "知识图谱，工艺和模具类型之间的关系，工艺-适用->模具类型",
+                    "end_node_type": "模具类型(Mold_Type)"
+                },
+                {
+                    "type": "检查-1(Check_1)",
+                    "description": "知识图谱，工艺与稳定性检查之间的关系，工艺-检查->稳定性检查",
+                    "end_node_type": "稳定性检查(Stability_Inspection)"
+                },
+                {
+                    "type": "检查-2(Check_2)",
+                    "description": "知识图谱，工艺与分析检查之间的关系，工艺-检查->分析检查",
+                    "end_node_type": "分析检查(Analysis_Inspection)"
+                },
+                {
+                    "type": "检查-3(Check_3)",
+                    "description": "知识图谱，工艺与产品重力检查之间的关系，工艺-检查->产品重力检查",
+                    "end_node_type": "产品重力检查(Product_Gravity_Inspection)"
+                },
+                {
+                    "type": "组成-1(Compose_1)",
+                    "description": "知识图谱，工艺与工序之间的关系，工艺-组成->工序",
+                    "end_node_type": "工序(Process_Step)"
+                },
+                {
+                    "type": "优化-1(Optimize_1)",
+                    "description": "知识图谱，工艺与模具类型之间的关系，工艺-优化->模具类型",
+                    "end_node_type": "模具类型(Mold_Type)"
+                },
+                {
+                    "type": "参数(Parameter)",
+                    "description": "知识图谱，工艺与工艺参数集之间的关系，工艺-参数->工艺参数集",
+                    "end_node_type": "工艺参数集(Process_Parameter_Set)"
+                },
+                {
+                    "type": "预测-2(Predict_2)",
+                    "description": "知识图谱，工艺与CAE仿真之间的关系，工艺-预测->CAE仿真",
+                    "end_node_type": "CAE仿真(CAE_Simulation)"
+                },
+                {
+                    "type": "涉及精算(Relating_Actuarial_Analysis)",
+                    "description": "知识图谱，工艺与精算之间的关系，工艺-涉及精算->精算",
+                    "end_node_type": "精算(Precise_Calculation)"
+                },
+                {
+                    "type": "使用-1(Use_1)",
+                    "description": "知识图谱，工艺与材料之间的关系，工艺-使用->材料",
+                    "end_node_type": "材料(Material)"
+                }
+            ]
+        },
+        {
+            "type": "工艺材料(Process_Material)",
+            "description": "冲压模具制造或使用过程中，辅助完成工艺的材料",
+            "properties": [
+                {
+                    "name": "塑性应变比R90值(Plastic_Strain_Ratio_R90_Value)",
+                    "type": "string",
+                    "description": "材料沿垂直于轧制方向（90°）拉伸时，横向应变与厚度应变的比值，表征该横向的抗变形能力"
+                },
+                {
+                    "name": "抗拉强度MPa(Tensile_Strength)",
+                    "type": "string",
+                    "description": "冲压材料被拉断前能承受的最大应力，单位为兆帕，决定材料冲压时的抗断裂极限"
+                },
+                {
+                    "name": "硬化指数(Strain_Hardening_Exponent)",
+                    "type": "string",
+                    "description": "描述冲压材料在塑性变形过程中强度随应变增加而提高的程度，影响材料的成形均匀性"
+                },
+                {
+                    "name": "延伸率(Elongation)",
+                    "type": "string",
+                    "description": "冲压材料断裂后，伸长部分与原长度的百分比，反映材料冲压成形时的塑性好坏"
+                },
+                {
+                    "name": "塑性应变比R0值(Plastic_Strain_Ratio_R0_Value)",
+                    "type": "string",
+                    "description": "材料沿轧制方向（0°）拉伸时，横向应变与厚度应变的比值，体现该方向抗厚度减薄能力"
+                },
+                {
+                    "name": "厚度mm(Thicknessmm)",
+                    "type": "string",
+                    "description": "冲压材料的厚度尺寸，单位为毫米，直接影响冲压模具间隙设计与冲压件精度"
+                },
+                {
+                    "name": "屈服强度MPa(Yield_Strength)",
+                    "type": "string",
+                    "description": "冲压材料发生塑性变形时所需的最小应力，单位为兆帕，是判断材料抗变形能力的关键指标"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "冲压工艺材料或相关参数的专属标识（如某型号冲压板材、特定力学性能参数名）"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "工艺材料的唯一编号"
+                },
+                {
+                    "name": "塑性应变比R45值(Plastic_Strain_Ratio_R45_Value)",
+                    "type": "string",
+                    "description": "材料沿与轧制方向成 45° 方向拉伸时，横向应变与厚度应变的比值，反映该斜向的成形性能"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "工艺参数集(Process_Parameter_Set)",
+            "description": "冲压过程中需控制的关键技术参数集合（如冲压压力、速度、间隙）",
+            "properties": [
+                {
+                    "name": "模具间隙_mm_(Mold_Clearance_mm)",
+                    "type": "string",
+                    "description": "冲压模具凸模与凹模刃口（或型面）间的间隙（单位：mm），冲裁时需匹配材料厚度（通常为料厚 1.05-1.1 倍）保证断面质量，成形时需适配材料回弹特性"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "工艺参数的名称"
+                },
+                {
+                    "name": "调整目的(Adjustment_Purpose)",
+                    "type": "string",
+                    "description": "调整上述工艺参数的核心目标，如 “调高压边力防拉深起皱”“优化模具间隙减冲裁毛刺”“调整冲头速度提升成形稳定性”"
+                },
+                {
+                    "name": "适用工序阶段(Applicable_Process_Stage)",
+                    "type": "string",
+                    "description": "各参数调整适配的冲压工序环节，如 “压边力调整适用工序阶段：拉深成形全程”“模具间隙调整适用工序阶段：冲裁工序试模 / 换料阶段”“冲头速度调整适用工序阶段：弯曲 / 拉深工序正式生产前调试”"
+                },
+                {
+                    "name": "冲头速度_mm_s_(Punch_Speed_mm_s)",
+                    "type": "string",
+                    "description": "冲压过程中冲头（凸模）下行或上行的线速度（单位：mm/s），需根据材料塑性、零件复杂度调整，过快易导致材料撕裂，过慢影响生产效率"
+                },
+                {
+                    "name": "压边力_kN_(Blank_Holder_Force_kN)",
+                    "type": "string",
+                    "description": "冲压拉深工序中，压边装置对毛坯施加的压力（单位：kN），核心作用是抑制毛坯起皱，同时控制材料向凹模内流动速度，保障拉深件壁厚均匀性"
+                },
+                {
+                    "name": "拉深筋阻力_N_mm_(Drawbead_Resistance_N_mm)",
+                    "type": "string",
+                    "description": "拉深工序中，拉深筋阻碍毛坯料流动的单位长度阻力（单位：N/mm），用于调节不同区域材料进料量，避免零件局部变薄或开裂，提升成形精度"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "工艺参数集的唯一编号"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "工序(Process_Step)",
+            "description": "冲压模具制造或冲压生产中，按顺序进行的单个独立操作步骤，比如模具加工中的 “铣削模腔” 这一步，或是冲压生产中的 “冲孔” 这一步",
+            "properties": [
+                {
+                    "name": "工序力(Process_Force)",
+                    "type": "string",
+                    "description": "冲压某道工序中，模具对材料施加的加工力（如冲孔力、拉深力）"
+                },
+                {
+                    "name": "工序名称(Process_Name)",
+                    "type": "string",
+                    "description": "冲压模具各加工步骤的标识（如分离工序、成形工序）"
+                },
+                {
+                    "name": "工序线(Process_Line)",
+                    "type": "string",
+                    "description": "冲压工序中界定材料加工范围或模具运动轨迹的线条"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "工序的唯一编号"
+                },
+                {
+                    "name": "工序序号(Process_Sequence_Number)",
+                    "type": "string",
+                    "description": "标注冲压生产中各工序先后顺序的编号"
+                },
+                {
+                    "name": "工序面(Process_Surface)",
+                    "type": "string",
+                    "description": "冲压模具与材料接触、实现加工的工作面（如凹模刃口面）"
+                },
+                {
+                    "name": "工序标注(Process_Marking)",
+                    "type": "string",
+                    "description": "在模具图纸或工艺文件中，标注工序参数（如压力、间隙）的说明"
+                }
+            ],
+            "required": [],
+            "outgoing_relations": [
+                {
+                    "type": "应用(Apply_3)",
+                    "description": "知识图谱，工序与模具类型之间的关系，工序-应用->模具类型",
+                    "end_node_type": "模具类型(Mold_Type)"
+                }
+            ]
+        },
+        {
+            "type": "工艺类型(Process_type)",
+            "description": "冲压模具实际加工过程中需要用到的工艺类型",
+            "properties": [
+                {
+                    "name": "上级工艺类型(Superior_process_type)",
+                    "type": "string",
+                    "description": "冲压模具加工中用到的工艺的上级工艺的类型"
+                },
+                {
+                    "name": "工艺类型名称(Process_type_name)",
+                    "type": "string",
+                    "description": "冲压模具加工中用到的加工工艺类型的名称"
+                }
+            ],
+            "required": [],
+            "outgoing_relations": []
+        },
+        {
+            "type": "产品重力检查(Product_Gravity_Inspection)",
+            "description": "检测冲压成品重量是否符合设计标准，判断材料用量合理性的检查",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "产品重力检测的名称"
+                },
+                {
+                    "name": "检测方式(Inspection_Method)",
+                    "type": "string",
+                    "description": "针对冲压件尺寸、形位公差的具体检测手段（如用百分表测平面度、通过检具定位间隙判孔径精度、借通止规测关键孔位），部分需结合重力作用辅助验证贴合度"
+                },
+                {
+                    "name": "检具方向(Gauge_Direction)",
+                    "type": "string",
+                    "description": "冲压件检测时，检具与零件的相对定位方向（如检具基准面与零件底面贴合的竖直方向、定位销与零件孔适配的水平方向），需与零件冲压成形后的基准方向一致，确保检测基准统一"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "产品重力检查的唯一编号"
+                },
+                {
+                    "name": "重力判断(Gravity_Judgment)",
+                    "type": "string",
+                    "description": "冲压件检测中，基于重力判断零件与检具贴合状态的方式（如零件自然置于检具基准面，无需外力即可完全贴合则判定合格，若存在翘曲、间隙则说明尺寸偏差）"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "结果(Result)",
+            "description": "冲压工艺实施、模具设计或检测后输出的成果（如合格零件、数据报告）",
+            "properties": [
+                {
+                    "name": "关联迭代(Associated_Iteration)",
+                    "type": "string",
+                    "description": "与当前偏差值、状态相关联的模具调整或工艺优化循环流程"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "结果的名称"
+                },
+                {
+                    "name": "状态_OK_NG_(Status_OK_NG)",
+                    "type": "string",
+                    "description": "冲压件检测或模具调试后的质量判定结果，“OK” 表示符合精度 / 质量标准，可进入下一环节；“NG” 表示存在偏差，需返工或调整模具"
+                },
+                {
+                    "name": "图片路径(Image_Path)",
+                    "type": "string",
+                    "description": "存储冲压件偏差位置、模具关键部位状态等图片的计算机文件路径，便于后续追溯偏差原因、复现问题及记录调整过程"
+                },
+                {
+                    "name": "补偿量(Compensation_Amount)",
+                    "type": "string",
+                    "description": "为修正冲压件回弹、尺寸偏差，对模具型面或工艺参数进行调整的具体数值，如 “针对 2mm 回弹偏差，模具型面反向补偿量为 0.8mm”"
+                },
+                {
+                    "name": "偏差值_mm_(Deviation_Value_mm)",
+                    "type": "string",
+                    "description": "冲压件实际尺寸与设计标准尺寸的差值（单位：mm），如 “冲压件孔位偏差值：+0.15mm”，用于量化尺寸偏离程度，指导模具调整"
+                },
+                {
+                    "name": "判定依据(Judgment_Basis)",
+                    "type": "string",
+                    "description": "判断冲压件是否合格或模具是否需调整的依据"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "结果的唯一编号"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "迭代关系(Iteration_Relation)",
+                    "description": "知识图谱，结果与工艺之间的关系，结果-迭代关系->工艺",
+                    "end_node_type": "工艺(Process)"
+                }
+            ]
+        },
+        {
+            "type": "回弹(Springback)",
+            "description": "冲压件成形后因材料弹性回复产生的变形",
+            "properties": [
+                {
+                    "name": "回弹来源(Springback_Source)",
+                    "type": "string",
+                    "description": "导致冲压件产生回弹的具体工艺环节或模具组件（如 “弯曲工序凸模圆角处”“拉延模压边力不足区域”），用于定位回弹根源"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "回弹的名称"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "回弹的唯一编号"
+                },
+                {
+                    "name": "回弹趋势(Springback_Trend)",
+                    "type": "string",
+                    "description": "冲压件各部位回弹量的变化规律（如 “零件边缘回弹量随曲率增大而增加”“拉延件中部回弹量小于四周”），为模具补偿提供趋势性依据"
+                },
+                {
+                    "name": "回弹原因(Springback_Cause)",
+                    "type": "string",
+                    "description": "引发冲压件回弹的具体因素（如 “材料弹性模量偏低”“模具型面设计不合理”“压边力过小”“冲头速度过快”），是制定回弹控制策略的基础"
+                },
+                {
+                    "name": "最大回弹量_mm_(Maximum_Springback_Amount_mm)",
+                    "type": "string",
+                    "description": "冲压件成形后，所有检测位置中回弹量的最大值（单位：mm），如 “弯曲件折弯处最大回弹量：2.5mm”，是评估回弹严重程度的核心指标"
+                },
+                {
+                    "name": "工序(Process_)",
+                    "type": "string",
+                    "description": "产生回弹对应的冲压加工步骤（如 “弯曲工序”“拉延工序”“翻边工序”），不同工序回弹机制与控制方式不同"
+                },
+                {
+                    "name": "位置(Position)",
+                    "type": "string",
+                    "description": "冲压件上出现回弹现象的具体部位（如 “U 型件折弯角位置”“拉延件法兰边位置”），需针对性制定补偿方案"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "稳定性检查(Stability_Inspection)",
+            "description": "验证冲压模具长期生产中运行精度、结构可靠性的检测",
+            "properties": [
+                {
+                    "name": "压边力稳定性(Blank_Holder_Force_Stability)",
+                    "type": "string",
+                    "description": "压边装置施加的压边力在冲压循环中保持设定值、无异常波动的性能，力值不稳定会使板料约束不一致，引发起皱或过度变薄"
+                },
+                {
+                    "name": "清园角稳定性(Fillet_Radius_Stability)",
+                    "type": "string",
+                    "description": "模具型面清园角（如凸模、凹模圆角）尺寸在长期冲压后仍保持设计标准、无磨损变形的状态，圆角磨损会导致板料成形时应力集中，降低零件质量"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "稳定性检查的唯一编号"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "稳定性检测的名称"
+                },
+                {
+                    "name": "摩擦系数稳定性(Coefficient_of_Friction_Stability)",
+                    "type": "string",
+                    "description": "板料与模具接触面间的摩擦系数在冲压全程保持稳定、无大幅波动的特性，系数波动会影响材料流动速度，引发起皱、开裂等缺陷"
+                },
+                {
+                    "name": "翻遍间隙稳定性(Flanging_Clearance_Stability)",
+                    "type": "string",
+                    "description": "翻边工序中，凸模与凹模间的翻边间隙在冲压过程中保持均匀、符合工艺要求的状态，间隙波动会导致翻边高度不均、边缘开裂"
+                },
+                {
+                    "name": "板料位置稳定性(Sheet_Metal_Position_Stability)",
+                    "type": "string",
+                    "description": "冲压过程中，板料在模具定位机构（如定位销、挡料块）作用下，位置保持一致、无偏移的能力，若稳定性差易导致零件尺寸超差、成形不对称"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "标准规范(Standard)",
+            "description": "冲压模具设计、制造、使用中需遵守的统一规则，比如模具精度要求、安全操作准则等",
+            "properties": [
+                {
+                    "name": "标准类型(Standard_Type)",
+                    "type": "string",
+                    "description": "按制定主体 / 范围划分的类别（如国标、行标、企标），规范工艺执行层级"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "标准规范的唯一编号"
+                },
+                {
+                    "name": "标准编号(Standard_Number)",
+                    "type": "string",
+                    "description": "冲压模具工艺标准的唯一标识代码，用于精准检索对标"
+                },
+                {
+                    "name": "模具行业分类(Mold_Industry_Classification)",
+                    "type": "string",
+                    "description": "按冲压工艺功能（如落料、冲孔、弯曲）划分的模具类别"
+                },
+                {
+                    "name": "标准名称(Standard_Name)",
+                    "type": "string",
+                    "description": "明确冲压模具工艺标准核心内容与适用范围的名称"
+                },
+                {
+                    "name": "标准来源(Standard_Source)",
+                    "type": "string",
+                    "description": "制定发布冲压模具工艺标准的权威机构（如国标委、行业协会）"
+                }
+            ],
+            "required": [],
+            "outgoing_relations": []
+        },
+        {
+            "type": "料带工序检查(Strip_Process_Inspection)",
+            "description": "对冲压料带各工序加工尺寸、定位精度的专项核验",
+            "properties": [
+                {
+                    "name": "压料力检查(Material_Pressing_Force_Inspection)",
+                    "type": "string",
+                    "description": "检查料带冲压所用工具体（如凸模、凹模、压料板）的安装位置、间隙设置是否符合工艺要求，保障工序正常运行"
+                },
+                {
+                    "name": "浮料位置检查(Floating_Material_Position_Inspection)",
+                    "type": "string",
+                    "description": "标识料带工序检查项目的具体称谓（如 “料带浮料位置检查”“工具体设置检查”），用于区分不同检查内容"
+                },
+                {
+                    "name": "先后成型顺序检查(Sequential_Forming_Order_Inspection)",
+                    "type": "string",
+                    "description": "检查料带与模具连接或定位用扣件（如定位销、卡扣）的安装状态、完好性及位置精度，确保料带送进稳定"
+                },
+                {
+                    "name": "工具体设置检查(Tool_Body_Setup_Inspection)",
+                    "type": "string",
+                    "description": "检查料带冲压时，压料动作与成形动作的先后配合是否合规（如先压料固定料带再进行成形），防止料带移位影响精度"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "料带工序检查的唯一编码"
+                },
+                {
+                    "name": "拉延造型检查(Drawing_Profile_Inspection)",
+                    "type": "string",
+                    "description": "检查料带拉延工序中，压料装置施加的压力是否在工艺设定范围，避免压力不足导致料带起皱或压力过大造成材料撕裂"
+                },
+                {
+                    "name": "扣件检查(Fastener_Inspection)",
+                    "type": "string",
+                    "description": "料带工序中，检查料带是否因送料不畅、模具间隙异常等出现局部凸起、脱离基准面的情况，防止浮料导致冲压件成形缺陷"
+                },
+                {
+                    "name": "先后压料成型检查(Sequential_Material_Pressing___Forming_Inspection)",
+                    "type": "string",
+                    "description": "核查料带在多工位冲压中，各成形工序（如冲孔、弯曲、拉延）是否遵循预设顺序，避免因顺序错乱导致零件报废"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "料带工序检查的名称"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "结构设计(Structural_Design)",
+            "description": "对模具整体结构、零部件布局及功能适配性的设计规划",
+            "properties": [
+                {
+                    "name": "材料加工工艺(Material_Processing_Technology)",
+                    "type": "string",
+                    "description": "针对冲压模具材料（如模具钢、硬质合金）的加工方式（如锻造、铣削、磨削、热处理），需兼顾材料性能与模具零件精度"
+                },
+                {
+                    "name": "模具零件(Mold_Component_Part)",
+                    "type": "string",
+                    "description": "构成模具组件的单个基础部件（如凸模、凹模、定位销、导柱），其材质、精度需满足冲压强度与成形精度要求"
+                },
+                {
+                    "name": "模具组件(Mold_Assembly)",
+                    "type": "string",
+                    "description": "由多个模具零件组装而成、承担特定冲压功能的单元（如 “压边组件”“拉延模凸模组件”），需匹配冲压工序需求设计装配关系"
+                },
+                {
+                    "name": "结构自检(Structural_Self_Inspection)",
+                    "type": "string",
+                    "description": "模具结构设计完成后，设计人员对结构合理性（如型面匹配度、零件装配间隙、受力均衡性）的自我检查，排查基础设计缺陷"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "结构设计的唯一编号"
+                },
+                {
+                    "name": "结构评审(Structural_Review)",
+                    "type": "string",
+                    "description": "组织技术、生产、质检等多方人员，对模具结构（如强度、稳定性、可制造性、维护便利性）进行综合评估，确认是否满足冲压生产与质量要求"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "标识冲压模具结构设计、组件或工艺相关对象的具体称谓"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "依据(According_to)",
+                    "description": "知识图谱，结构设计与标准规范之间的关系，结构设计-依据->标准规范",
+                    "end_node_type": "标准规范(Standard)"
+                },
+                {
+                    "type": "包含-35(Contain_35)",
+                    "description": "知识图谱，结构设计与工序之间的关系，结构设计-包含->工序",
+                    "end_node_type": "工序(Process_Step)"
+                },
+                {
+                    "type": "包含材料(Contain_Material)",
+                    "description": "知识图谱，结构设计与材料之间的关系，结构设计-包含材料->材料",
+                    "end_node_type": "材料(Material)"
+                },
+                {
+                    "type": "设计-1(Design_1)",
+                    "description": "知识图谱，结构设计与模具组件之间的关系，结构设计-设计->模具组件",
+                    "end_node_type": "模具组件(Mold_Assembly)"
+                },
+                {
+                    "type": "设计-2(Design_2)",
+                    "description": "知识图谱，结构设计与模具零件之间的关系，结构设计-设计->模具零件",
+                    "end_node_type": "模具零件(Mold_Part)"
+                },
+                {
+                    "type": "加工关系(Process_Relation)",
+                    "description": "知识图谱，结构设计与材料加工工艺之间的关系，结构设计-加工关系->材料加工工艺",
+                    "end_node_type": "材料加工工艺(Material_Processing_Technology)"
+                }
+            ]
+        },
+        {
+            "type": "结构材料(Structural_Material)",
+            "description": "用来制作冲压模具核心结构（如凸模、凹模、模架）的材料，需具备高强度、高耐磨性",
+            "properties": [
+                {
+                    "name": "材料类型(Material_Type)",
+                    "type": "string",
+                    "description": "按特性划分的冲压模具结构材料类别（如冷作模具钢、热作模具钢）"
+                },
+                {
+                    "name": "耐磨性(Wear_Resistance)",
+                    "type": "string",
+                    "description": "结构材料抵抗模具磨损的能力（如凸模材料需高耐磨性）"
+                },
+                {
+                    "name": "材料加工工艺(Material_Processing_Technology)",
+                    "type": "string",
+                    "description": "结构材料制成模具零件的加工方法（如锻造、热处理、铣削）"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "结构材料的唯一编号"
+                },
+                {
+                    "name": "材料名称(Material_Name)",
+                    "type": "string",
+                    "description": "冲压模具结构材料的专属标识（如 Cr12 模具钢、高速钢 W18Cr4V）"
+                },
+                {
+                    "name": "适用模具(Applicable_Mold)",
+                    "type": "string",
+                    "description": "特定结构材料适配的冲压模具类型（如冷作模具钢适用于落料模）"
+                },
+                {
+                    "name": "硬度HRC(Hardness)",
+                    "type": "string",
+                    "description": "衡量结构材料抗变形能力的指标（如凹模材料常需 HRC 58-62）"
+                },
+                {
+                    "name": "耐腐蚀性(Corrosion_Resistance)",
+                    "type": "string",
+                    "description": "结构材料抵抗冲压环境中腐蚀的能力（如潮湿环境下的防锈性）"
+                },
+                {
+                    "name": "热导率(Thermal_Conductivity)",
+                    "type": "string",
+                    "description": "结构材料传导热量的能力，影响模具散热设计"
+                },
+                {
+                    "name": "材料牌号(Material_Grade)",
+                    "type": "string",
+                    "description": "区分不同规格结构材料的编号（如国标模具钢牌号 Cr12MoV）"
+                },
+                {
+                    "name": "标准号(Standard_Number)",
+                    "type": "string",
+                    "description": "规范结构材料性能的标准标识（如 GB/T 1299-2014）"
+                },
+                {
+                    "name": "材料性质(Material_Property)",
+                    "type": "string",
+                    "description": "冲压模具结构材料的固有属性（如强度、韧性、耐热性）"
+                }
+            ],
+            "required": [],
+            "outgoing_relations": []
+        },
+        {
+            "type": "结构评审(Structural_Review)",
+            "description": "组织专业人员对模具结构设计的可行性、安全性、经济性进行评估审核的过程",
+            "properties": [
+                {
+                    "name": "客户生产条件评审(Customer_Production_Condition_Review)",
+                    "type": "string",
+                    "description": "评审模具是否适配客户车间的设备参数（如冲床吨位、行程）、生产节拍及操作人员技能，确保模具可顺利投产"
+                },
+                {
+                    "name": "客户标准评审(Customer_Standard_Review)",
+                    "type": "string",
+                    "description": "对照客户提出的模具设计、精度、材质等标准，评审模具是否完全符合要求，避免偏离客户技术规范"
+                },
+                {
+                    "name": "冲裁间隙与立切评审(Blanking_Clearance_and_Vertical_Cutting_Review)",
+                    "type": "string",
+                    "description": "评审冲裁工序中凸凹模间隙的均匀性、立切刀的刃口精度与安装角度，避免出现冲裁毛刺、断面不平整等问题"
+                },
+                {
+                    "name": "模具尺寸重量(Mold_Size_and_Weight)",
+                    "type": "string",
+                    "description": "记录模具的长、宽、高尺寸及整体重量，需匹配客户车间安装空间、吊装设备承重及运输限制"
+                },
+                {
+                    "name": "客户实体评审(Customer_Entity_Review)",
+                    "type": "string",
+                    "description": "客户对模具实体（如外观、装配精度、试冲效果）进行现场查验评审，确认模具实物与需求的一致性"
+                },
+                {
+                    "name": "压料与顶出评审(Material_Pressing_and_Ejecting_Review)",
+                    "type": "string",
+                    "description": "评审模具压料装置的压力稳定性、顶出机构的顶出力度与同步性，确保压料可靠、产品顶出无变形"
+                },
+                {
+                    "name": "快拆可调防反评审(Quick_Dismantling__Adjustable_and_Anti_Reversal_Review)",
+                    "type": "string",
+                    "description": "评审模具快拆结构的便捷性、可调部件的调节精度及防反装设计的有效性，保障模具维护高效、装配无错"
+                },
+                {
+                    "name": "产品取放传送评审(Product_Picking__Placing_and_Conveying_Review)",
+                    "type": "string",
+                    "description": "评审冲压后产品从模具内取出、放置及传送的路径合理性与安全性，确保取放高效、无磕碰，适配自动化生产流程"
+                },
+                {
+                    "name": "字印(Character_Marking_Stamp_Mark)",
+                    "type": "string",
+                    "description": "模具或冲压件上压制的标识（如型号、生产日期、厂家代号），需评审字印清晰度、位置合规性，满足追溯与标识要求"
+                },
+                {
+                    "name": "导尺合理性评审(Guide_Ruler_Rationality_Review)",
+                    "type": "string",
+                    "description": "评审模具导尺（定位、导向用）的安装位置、尺寸精度及与板料的配合度，确认其能否稳定引导板料送进，避免偏移"
+                },
+                {
+                    "name": "感应器(Inductor_Sensor)",
+                    "type": "string",
+                    "description": "安装于模具上，用于检测板料位置、模具开合状态或产品有无的感应元件，确保冲压过程精准、防错"
+                },
+                {
+                    "name": "铸件模结构评审(Casting_Mold_Structure_Review)",
+                    "type": "string",
+                    "description": "对铸件材质模具的结构（如型面强度、冷却水路布局、分型面合理性）进行评审，确认其适配铸件冲压成形需求，避免结构失效"
+                },
+                {
+                    "name": "平衡内限叉车评审(Balanced_Internal_Limit_Forklift_Review)",
+                    "type": "string",
+                    "description": "评审模具平衡结构是否满足内限叉车搬运要求，确认叉车作业时模具受力均衡、无倾翻风险，保障搬运安全"
+                },
+                {
+                    "name": "模具难点确认(Mold_Difficulty_Confirmation)",
+                    "type": "string",
+                    "description": "梳理模具设计与制造中的关键难题（如复杂型面加工、薄壁件回弹控制、多工位同步精度），明确需重点突破的技术点"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "结构评审的唯一编号"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "标识冲压模具结构评审、部件或客户相关评审对象的具体称谓"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "结构自检(Structural_Self_Inspection)",
+            "description": "模具结构设计完成后，对自身合理性、合规性的自查",
+            "properties": [
+                {
+                    "name": "设计和工艺要求一致性检查(Consistency_Inspection_of_Design_and_Process_Requirements)",
+                    "type": "string",
+                    "description": "核查模具结构设计（如型面尺寸、零件装配关系）与冲压工艺要求（如成形顺序、压边力参数）的一致性，避免设计与工艺脱节"
+                },
+                {
+                    "name": "唯一编号(Unique_ID)",
+                    "type": "string",
+                    "description": "结构自检的唯一编号"
+                },
+                {
+                    "name": "干涉检查(Interference_Inspection)",
+                    "type": "string",
+                    "description": "静态状态下，检查模具各运动部件与固定部件（如导柱与导套、冲头与凹模）的间隙是否合理，有无静态干涉"
+                },
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "标识冲压模具结构自检相关对象的具体称谓"
+                },
+                {
+                    "name": "掉产品掉废料检查(Inspection_for_Product_Scrap_Dropping)",
+                    "type": "string",
+                    "description": "检查冲压过程中产品是否能顺利掉落至接料装置，废料是否能通过排料通道及时排出，避免积料影响生产"
+                },
+                {
+                    "name": "铸件和钢件材质检查(Material_Inspection_of_Castings_and_Steel_Parts)",
+                    "type": "string",
+                    "description": "检查模具铸件（如模座）、钢件（如凸凹模）的材质是否符合设计要求（如牌号、力学性能），通过材质证明或检测报告验证"
+                },
+                {
+                    "name": "冲头刀口成型公强度检查(Strength_Inspection_of_Punch_Cutting_Edge_Forming_Male_Die)",
+                    "type": "string",
+                    "description": "检查冲头刀口的锋利度、成型公（凸模类部件）的结构强度，评估其能否承受冲压载荷，防止使用中崩刃、断裂"
+                },
+                {
+                    "name": "生产条件检查(Production_Condition_Inspection)",
+                    "type": "string",
+                    "description": "检查客户车间生产条件（如冲床吨位、行程、工作台尺寸）与模具设计参数的匹配性，确保模具可正常安装投产"
+                },
+                {
+                    "name": "拆镶件检查(Insert_Dismantling_Inspection)",
+                    "type": "string",
+                    "description": "检查模具镶件的拆装便捷性、定位可靠性及与基体的配合间隙，确保镶件更换维护高效，无松动移位风险"
+                },
+                {
+                    "name": "上下模座检查(Upper_and_Lower_Die_Base_Inspection)",
+                    "type": "string",
+                    "description": "检查上下模座的平面度、平行度及安装孔位置精度，核查模座有无裂纹、变形等缺陷，保障模具整体装配精度"
+                },
+                {
+                    "name": "标准件检查(Standard_Part_Inspection)",
+                    "type": "string",
+                    "description": "检查模具所用标准件（如导柱、弹簧、螺栓）的型号、规格、精度是否与设计一致，有无质量缺陷，确保装配合规"
+                },
+                {
+                    "name": "标准件操作检查(Standard_Part_Operation_Inspection)",
+                    "type": "string",
+                    "description": "检查标准件（如螺栓紧固、弹簧安装）的操作是否符合规范（如拧紧力矩、安装方向），确保标准件功能正常发挥"
+                },
+                {
+                    "name": "客户指导书核对检查(Verification_Inspection_of_Customer_Guidelines)",
+                    "type": "string",
+                    "description": "对照客户提供的指导书（如设计规范、验收标准），逐项核查模具自检结果是否符合要求，确保满足客户技术指标"
+                },
+                {
+                    "name": "滑块和模具防反检查(Anti_Reversal_Inspection_of_Slide_Block_and_Die)",
+                    "type": "string",
+                    "description": "检查滑块与模具的配合结构（如定位键、防反销）是否有效，防止滑块安装反向或模具装配错位，规避安全与质量风险"
+                },
+                {
+                    "name": "动态干涉检查(Dynamic_Interference_Inspection)",
+                    "type": "string",
+                    "description": "模拟模具动态工作循环（如开合模、冲压动作），检查运动部件间（如滑块与上模座、顶出机构与下模）有无动态碰撞干涉"
+                },
+                {
+                    "name": "仿形定位检查(Contour_Positioning_Inspection)",
+                    "type": "string",
+                    "description": "检查模具仿形定位部件（如定位块、仿形销）的位置精度及与板料 / 产品的贴合度，确保定位精准、成形稳定"
+                },
+                {
+                    "name": "悬空检查(Suspension_Inspection)",
+                    "type": "string",
+                    "description": "检查模具安装或工作时，有无部件（如连接件、辅助装置）处于悬空状态且无可靠支撑，防止使用中变形、脱落"
+                },
+                {
+                    "name": "错漏涂色检查(Inspection_for_Missing_or_Incorrect_Coloring)",
+                    "type": "string",
+                    "description": "检查模具需涂色标识的部位（如危险区域、装配基准）是否按要求涂色，有无错涂、漏涂，确保标识清晰合规"
+                },
+                {
+                    "name": "形程走位检查(Stroke_Movement_Inspection)",
+                    "type": "string",
+                    "description": "模拟模具工作过程，检查滑块、冲头等运动部件的行程轨迹是否符合设计要求，有无偏移、卡顿，保障运动顺畅"
+                },
+                {
+                    "name": "翻边折弯成型脱料检查(Stripping_Inspection_for_Flanging_and_Bending_Forming)",
+                    "type": "string",
+                    "description": "检查翻边折弯工序后，产品能否顺利从模具中脱料，脱料机构（如顶料销、脱料板）动作是否顺畅，避免卡料、产品变形"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "标准规范类型(Type_of_standard_specification)",
+            "description": "冲压模具加工过程中需要遵循的标准规范的类型",
+            "properties": [
+                {
+                    "name": "标准规范类型名称(Name_of_Standard_Specification_Type)",
+                    "type": "string",
+                    "description": "冲压模具加工过程中需要遵循的标准规范类型的名称"
+                }
+            ],
+            "required": [],
+            "outgoing_relations": []
+        },
+        {
+            "type": "nan(nan)",
+            "description": "",
+            "properties": [],
+            "required": [],
+            "outgoing_relations": []
+        }
+    ]
+}
