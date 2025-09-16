@@ -1,0 +1,162 @@
+{
+  "entity_types": [
+    {
+      "type": "Mold",
+      "description": "模具整体实体，用于成型金属、塑料、橡胶等材料的工具。",
+      "attributes": [
+        {"name": "模具编号mold_id", "type": "string", "description": "模具的唯一标识符"},
+        {"name": "模具名称mold_name", "type": "string", "description": "模具的名称"},
+        {"name": "描述description", "type": "string", "description": "模具的功能说明与应用描述"},
+        {"name": "类型type", "type": "string", "description": "模具的分类，如注塑模、冲压模、压铸模"},
+        {"name": "材料material", "type": "string", "description": "模具主体或关键零件所用材料"},
+        {"name": "应用领域application_field", "type": "List<String>", "description": "模具的应用领域，如汽车、家电、医疗"},
+        {"name": "寿命service_life", "type": "int", "description": "模具可承受的循环次数或寿命"},
+        {"name": "公差tolerance", "type": "string", "description": "模具制造与装配的允许误差范围"}
+      ]
+    },
+    {
+      "type": "MoldComponent",
+      "description": "模具零部件实体，指构成模具的各种组件。",
+      "attributes": [
+        {"name": "零部件名称component_name", "type": "string", "description": "零部件的名称，例如导向件、定位销"},
+        {"name": "功能function", "type": "string", "description": "该零部件在模具中的主要作用"},
+        {"name": "分类category", "type": "string", "description": "零部件所属大类，如导向件、定位件"},
+        {"name": "是否标准件is_standard_part", "type": "boolean", "description": "该零件是否为标准件"},
+        {"name": "特点feature", "type": "List<String>", "description": "零部件的固有特性或行为"},
+        {"name": "产品型号product_model", "type": "List<String>", "description": "零部件的具体产品型号/品牌"},
+        {"name": "别名alias", "type": "string", "description": "零部件的常用别名"},
+        {"name": "描述description", "type": "string", "description": "零部件的详细说明"},
+        {"name": "设计参数design_parameters", "type": "Dict", "description": "零部件相关的设计参数"}
+      ]
+    },
+    {
+      "type": "MoldType",
+      "description": "模具类型实体，指不同种类的模具。",
+      "attributes": [
+        {"name": "模具类型编号mold_type_id", "type": "string", "description": "模具类型的唯一标识符"},
+        {"name": "模具名称mold_name", "type": "string", "description": "模具的通用名称"},
+        {"name": "适用场景application_scenario", "type": "string", "description": "模具应用的生产环境或工艺"},
+        {"name": "特点feature", "type": "List<String>", "description": "模具的显著特性"},
+        {"name": "一级分类primary_category", "type": "string", "description": "模具的大类分类"},
+        {"name": "二级分类secondary_category", "type": "string", "description": "模具的工序性质或组合程度分类"},
+        {"name": "三级分类tertiary_category", "type": "string", "description": "二级分类下的进一步细分"}
+      ]
+    },
+    {
+      "type": "MoldStructureComposition",
+      "description": "模具结构组成，表示模具的结构部件集合。",
+      "attributes": [
+        {"name": "部件编号component_id", "type": "string", "description": "结构组成部件的唯一标识符"},
+        {"name": "名称name", "type": "string", "description": "组成部件名称"},
+        {"name": "描述description", "type": "string", "description": "组成部件功能说明"},
+        {"name": "材料material", "type": "string", "description": "部件所用材料"},
+        {"name": "功能function", "type": "string", "description": "部件在模具中的作用"},
+        {"name": "装配方式assembly_method", "type": "string", "description": "装配方式"}
+      ]
+    },
+    {
+      "type": "Craft",
+      "description": "工艺实体，表示模具制造与使用过程的工艺。",
+      "attributes": [
+        {"name": "工艺编号craft_id", "type": "string", "description": "工艺的唯一标识符"},
+        {"name": "名称name", "type": "string", "description": "工艺名称"},
+        {"name": "描述description", "type": "string", "description": "工艺的说明"},
+        {"name": "工艺类别craft_category", "type": "string", "description": "工艺的类别，如热处理、表面处理"},
+        {"name": "流程process_flow", "type": "List<String>", "description": "工艺的流程"},
+        {"name": "设备equipment", "type": "List<String>", "description": "所需设备或机床"},
+        {"name": "检验标准inspection_criteria", "type": "List<String>", "description": "工艺质量的检查标准"}
+      ]
+    },
+    {
+      "type": "MaterialProcessingCraft",
+      "description": "材料加工工艺实体，表示对材料的加工方法。",
+      "attributes": [
+        {"name": "工艺编号proc_id", "type": "string", "description": "工艺唯一标识符"},
+        {"name": "工艺名称name", "type": "string", "description": "工艺名称"},
+        {"name": "描述description", "type": "string", "description": "工艺说明"},
+        {"name": "工艺参数process_parameters", "type": "Dict", "description": "工艺的关键参数，如温度、压力"},
+        {"name": "适用材料applicable_material", "type": "List<String>", "description": "该工艺适用的材料"},
+        {"name": "所需设备equipment", "type": "List<String>", "description": "工艺所需的设备"},
+        {"name": "工艺标准craft_standard", "type": "List<String>", "description": "适用的工艺标准"},
+        {"name": "缺陷控制defect_control", "type": "List<String>", "description": "工艺缺陷的控制措施"}
+      ]
+    },
+    {
+      "type": "DesignCharacteristic",
+      "description": "设计特征实体，表示模具设计中的关键特征。",
+      "attributes": [
+        {"name": "特征编号characteristic_id", "type": "string", "description": "设计特征唯一标识符"},
+        {"name": "名称name", "type": "string", "description": "设计特征名称"},
+        {"name": "描述description", "type": "string", "description": "设计特征说明"},
+        {"name": "参数parameters", "type": "Dict", "description": "设计特征相关参数"},
+        {"name": "关键点key_points", "type": "List<String>", "description": "设计中的关键点"},
+        {"name": "约束constraints", "type": "List<String>", "description": "设计中的限制条件"},
+        {"name": "关联标准associated_standards", "type": "List<String>", "description": "设计涉及的标准"}
+      ]
+    },
+    {
+      "type": "DesignSpecifications",
+      "description": "设计规范实体，规定模具设计的标准与规则。",
+      "attributes": [
+        {"name": "规范编号spec_id", "type": "string", "description": "设计规范唯一标识符"},
+        {"name": "名称name", "type": "string", "description": "规范名称"},
+        {"name": "描述description", "type": "string", "description": "规范说明"},
+        {"name": "类别spec_type", "type": "string", "description": "规范类别"},
+        {"name": "适用阶段applicable_stage", "type": "string", "description": "规范适用的阶段"},
+        {"name": "引用标准reference_standard", "type": "List<String>", "description": "引用的标准"},
+        {"name": "约束规则constraint_rules", "type": "List<String>", "description": "必须遵循的约束条件"}
+      ]
+    },
+    {
+      "type": "InterfaceStandard",
+      "description": "接口标准实体，规定模具与外部系统的接口要求。",
+      "attributes": [
+        {"name": "接口编号interface_id", "type": "string", "description": "接口标准唯一标识符"},
+        {"name": "名称name", "type": "string", "description": "接口标准名称"},
+        {"name": "描述description", "type": "string", "description": "接口标准说明"},
+        {"name": "适用范围applicable_range", "type": "string", "description": "接口适用范围"},
+        {"name": "连接方式connection_type", "type": "string", "description": "接口的连接方式"},
+        {"name": "兼容性compatibility", "type": "string", "description": "接口兼容性要求"}
+      ]
+    },
+    {
+      "type": "Standard",
+      "description": "标准实体，表示模具相关的标准。",
+      "attributes": [
+        {"name": "标准编号standard_id", "type": "string", "description": "标准唯一标识符"},
+        {"name": "标准名称name", "type": "string", "description": "标准名称"},
+        {"name": "描述description", "type": "string", "description": "标准说明"},
+        {"name": "编号code", "type": "string", "description": "标准编号"},
+        {"name": "标准类型type", "type": "string", "description": "标准类别"},
+        {"name": "发布日期release_date", "type": "date", "description": "标准的发布日期"},
+        {"name": "替代标准replace_standard", "type": "string", "description": "被替代或替代的标准"},
+        {"name": "适用范围scope", "type": "string", "description": "标准的适用范围"}
+      ]
+    },
+    {
+      "type": "Material",
+      "description": "材料实体，表示模具零部件使用的材料。",
+      "attributes": [
+        {"name": "材质名称material_name", "type": "string", "description": "材料名称"},
+        {"name": "特性property", "type": "List<String>", "description": "材料的物理或化学特性"}
+      ]
+    }
+  ],
+  "relation_types": [
+    {"type": "组成 compose", "head": "Mold", "tail": "MoldStructureComposition", "description": "模具由多个结构组成部分构成"},
+    {"type": "属于 belong_to", "head": "Mold", "tail": "MoldType", "description": "模具属于某一类模具类型"},
+    {"type": "基本要素 essential", "head": "Craft", "tail": "DesignCharacteristic", "description": "工艺包含的基本设计特征"},
+    {"type": "可选特征 choosable", "head": "Craft", "tail": "DesignCharacteristic", "description": "工艺对应的可选设计特征"},
+    {"type": "适用于 apply_to", "head": "DesignCharacteristic", "tail": "MoldType", "description": "某设计特征适用于某类模具"},
+    {"type": "替代标准 alternate_standard", "head": "DesignCharacteristic", "tail": "Standard", "description": "某设计特征在设计中可替代的标准"},
+    {"type": "遵循规范 follow_specification", "head": "Mold", "tail": "DesignSpecifications", "description": "模具设计过程必须遵循的规范"},
+    {"type": "符合标准 conforms_to", "head": "Mold", "tail": "Standard", "description": "模具及零件符合的行业或国家标准"},
+    {"type": "具有接口 has_interface", "head": "Mold", "tail": "InterfaceStandard", "description": "模具设计与其他系统/零件之间的接口标准"},
+    {"type": "尺寸特征 has_size_feature", "head": "MoldComponent", "tail": "MoldDesignElement", "description": "零部件的设计尺寸需满足的设计要素"},
+    {"type": "几何特征 has_geometric_feature", "head": "MoldComponent", "tail": "MoldDesignElement", "description": "零部件的几何形状需满足的设计要素"},
+    {"type": "运动关系 has_motion_relationship", "head": "MoldComponent", "tail": "MoldDesignElement", "description": "零部件的运动方式与设计要素的关系"},
+    {"type": "需要 requires", "head": "MoldType", "tail": "MoldComponent", "description": "某模具类型在设计或功能上所必需的零部件"},
+    {"type": "具有 has", "head": "MoldType", "tail": "MoldDesignElement", "description": "某模具类型具备的设计要素"},
+    {"type": "由...制成 made_of", "head": "MoldComponent", "tail": "Material", "description": "模具零部件由某种材料制成"}
+  ]
+}

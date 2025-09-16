@@ -1,0 +1,932 @@
+{
+    "schema_definitions": [
+        {
+            "type": "材料加工工艺(MaterialProcessingCraft)",
+            "description": "用于加工材料的工艺",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "名称"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "描述"
+                },
+                {
+                    "name": "租户(Tenant)",
+                    "type": "string",
+                    "description": "租户"
+                },
+                {
+                    "name": "工艺参数(CraftParameters)",
+                    "type": "string",
+                    "description": "材料加工工艺中涉及的关键参数"
+                },
+                {
+                    "name": "常见牌号(CommonGrade)",
+                    "type": "string",
+                    "description": "材料加工工艺中材料的常见牌号"
+                },
+                {
+                    "name": "类型(Type)",
+                    "type": "string",
+                    "description": "材料加工工艺类型"
+                },
+                {
+                    "name": "材料名称(MaterialName)",
+                    "type": "string",
+                    "description": "材料加工工艺对应的材料名称"
+                },
+                {
+                    "name": "工艺过程描述(ProcedureDescription)",
+                    "type": "string",
+                    "description": "材料加工工艺的过程描述"
+                },
+                {
+                    "name": "材料类型(MaterialType)",
+                    "type": "string",
+                    "description": "材料加工工艺对应的材料类型"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "模具(Mold)",
+            "description": "模具是一种用于成型各种材料（如金属、塑料、玻璃、陶瓷或橡胶等）的工具，通过它可以使原材料获得特定的形状和尺寸。",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "名称"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "描述"
+                },
+                {
+                    "name": "租户(Tenant)",
+                    "type": "string",
+                    "description": "租户"
+                },
+                {
+                    "name": "模具结构组成(StructuralComposition)",
+                    "type": "string",
+                    "description": "模具结构的组成组件"
+                },
+                {
+                    "name": "典型应用领域(TypicalApplicationFields)",
+                    "type": "string",
+                    "description": "典型应用的领域"
+                },
+                {
+                    "name": "核心技术特征(CoreTechnicalCharacteristics)",
+                    "type": "string",
+                    "description": "模具的设计的主要技术特征"
+                },
+                {
+                    "name": "模具类型(Type)",
+                    "type": "string",
+                    "description": "所属模具类型二级分类（按成型方式细分）"
+                },
+                {
+                    "name": "适用材料(ApplicableMaterials)",
+                    "type": "string",
+                    "description": "键参数（材料、硬度、尺寸范围等）"
+                },
+                {
+                    "name": "成型工艺(FormingProcess)",
+                    "type": "string",
+                    "description": "模具的成型工艺方式"
+                },
+                {
+                    "name": "标准核心条款(StandardCoreClauses)",
+                    "type": "string",
+                    "description": "本模具适用的国家/国际或企业规范标准的核心条款"
+                },
+                {
+                    "name": "标准依据(StandardBasis)",
+                    "type": "string",
+                    "description": "参考的国家/国际标准或企业规范"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "组成1(Compose1)",
+                    "description": "模具与模具结构组成之间的关系，模具-组成-模具结构组成",
+                    "end_node_type": "模具结构组成(MoldStructureComposition)"
+                },
+                {
+                    "type": "属于1(BelongTo1)",
+                    "description": "模具与模具类型之间的关系，模具-属于-模具类型",
+                    "end_node_type": "模具类型(MoldType)"
+                }
+            ]
+        },
+        {
+            "type": "设计规范(DesignSpecifications)",
+            "description": "模具结构设计中涉及的设计规范",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "名称"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "描述"
+                },
+                {
+                    "name": "租户(Tenant)",
+                    "type": "string",
+                    "description": "租户"
+                },
+                {
+                    "name": "标准编号(StandardNumber)",
+                    "type": "string",
+                    "description": "标准的唯一标识符"
+                },
+                {
+                    "name": "应用领域(ApplicationArea)",
+                    "type": "string",
+                    "description": "标准的应用领域"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "设计特征(DesignCharacteristic)",
+            "description": "模具的设计特征，包括设计要点，设计参数，标准依据等",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "名称"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "描述"
+                },
+                {
+                    "name": "租户(Tenant)",
+                    "type": "string",
+                    "description": "租户"
+                },
+                {
+                    "name": "标准依据(StandardBasis)",
+                    "type": "string",
+                    "description": "该设计特征所参考的国家标准、行业标准或国际标准"
+                },
+                {
+                    "name": "安装位置(InstallationSite)",
+                    "type": "string",
+                    "description": "该结构组件在模具中的安装位置"
+                },
+                {
+                    "name": "模具结构层级(MoldStructureHierarchy)",
+                    "type": "string",
+                    "description": "所属模具结构层级（主结构/子结构）"
+                },
+                {
+                    "name": "设计要点(KeyPointsOfDesign)",
+                    "type": "string",
+                    "description": "设计该特征时应重点关注的设计原则或技术要求"
+                },
+                {
+                    "name": "适用工艺(ApplicableProcess)",
+                    "type": "string",
+                    "description": "该结构适用的成型工艺（如注塑、压铸等）"
+                },
+                {
+                    "name": "模具类型(MoldType)",
+                    "type": "string",
+                    "description": "该设计特征适用的模具类型"
+                },
+                {
+                    "name": "英文名称(EnglishName)",
+                    "type": "string",
+                    "description": "设计特征的英文名称或术语"
+                },
+                {
+                    "name": "设计参数(DesignParameters)",
+                    "type": "string",
+                    "description": "与该设计特征相关的关键设计参数及其取值范围"
+                },
+                {
+                    "name": "表面处理(SurfaceTreatment)",
+                    "type": "string",
+                    "description": "使用的表面处理工艺"
+                },
+                {
+                    "name": "加工工艺(ProcessingTechnic)",
+                    "type": "string",
+                    "description": "该结构组件常用的加工方式"
+                },
+                {
+                    "name": "材料要求(MaterialRequirements)",
+                    "type": "string",
+                    "description": "该结构组件常用的材料类型"
+                },
+                {
+                    "name": "常见结构或组件(CommonStructuresOrComponents)",
+                    "type": "string",
+                    "description": "该设计特征在模具中常见的结构形式或组件"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "替代标准3(AlternateStandard3)",
+                    "description": "设计特征与接口标准之间的关系，设计特征-替代标准-接口标准",
+                    "end_node_type": "接口标准(InterfaceStandard)"
+                },
+                {
+                    "type": "直接关联3(DirectConnection3)",
+                    "description": "设计特征与接口标准之间的关系，设计特征-直接关联-接口标准",
+                    "end_node_type": "接口标准(InterfaceStandard)"
+                },
+                {
+                    "type": "功能补充1(FunctionSupplement1)",
+                    "description": "设计特征与接口标准之间的关系，设计特征-功能补充-接口标准",
+                    "end_node_type": "接口标准(InterfaceStandard)"
+                },
+                {
+                    "type": "国际标准关联3(InternationalStandard3)",
+                    "description": "设计特征与接口标准之间的关系，设计特征-国际关联标准-接口标准",
+                    "end_node_type": "接口标准(InterfaceStandard)"
+                },
+                {
+                    "type": "替代标准4(AlternateStandard4)",
+                    "description": "设计特征与材料标准之间的关系，设计特征-替代标准-材料标准",
+                    "end_node_type": "材料标准(MaterialStandard)"
+                },
+                {
+                    "type": "直接关联4(DirectConnection4)",
+                    "description": "设计特征与材料标准之间的关系，设计特征-直接关联-材料标准",
+                    "end_node_type": "材料标准(MaterialStandard)"
+                },
+                {
+                    "type": "适用于3(ApplyTo3)",
+                    "description": "设计特征与模具类型之间的关系，设计特征-适用于3-模具类型",
+                    "end_node_type": "模具类型(MoldType)"
+                },
+                {
+                    "type": "属于4(BelongTo4)",
+                    "description": "设计特征与模具类型之间的关系，设计特征-属于-模具类型",
+                    "end_node_type": "模具类型(MoldType)"
+                },
+                {
+                    "type": "直接关联6(DirectConnection6)",
+                    "description": "设计特征与设计规范之间的关系，设计特征-直接关联-设计规范",
+                    "end_node_type": "设计规范(DesignSpecifications)"
+                },
+                {
+                    "type": "国际标准关联6(InternationalStandard6)",
+                    "description": "设计特征与设计规范之间的关系，设计特征-国际标准关联-设计规范",
+                    "end_node_type": "设计规范(DesignSpecifications)"
+                },
+                {
+                    "type": "替代标准5(AlternateStandard5)",
+                    "description": "设计特征与设计公差标准之间的关系，设计特征-替代标准-设计公差标准",
+                    "end_node_type": "设计公差标准(DesignToleranceStandard)"
+                },
+                {
+                    "type": "直接关联5(DirectConnection5)",
+                    "description": "设计特征与设计公差标准之间的关系，设计特征-直接关联-设计公差标准",
+                    "end_node_type": "设计公差标准(DesignToleranceStandard)"
+                },
+                {
+                    "type": "国际标准关联5(InternationalStandard5)",
+                    "description": "设计特征与设计公差标准之间的关系，设计特征-国际标准关联-设计公差标准",
+                    "end_node_type": "设计公差标准(DesignToleranceStandard)"
+                },
+                {
+                    "type": "替代标准2(AlternateStandard2)",
+                    "description": "设计特征与工艺标准之间的关系，设计特征-替代标准-工艺标准",
+                    "end_node_type": "工艺标准(CraftStandard)"
+                },
+                {
+                    "type": "直接关联2(DirectConnection2)",
+                    "description": "设计特征与工艺标准之间的关系，设计特征-直接关联-工艺标准",
+                    "end_node_type": "工艺标准(CraftStandard)"
+                },
+                {
+                    "type": "国际标准关联2(InternationalStandard2)",
+                    "description": "设计特征与工艺标准之间的关系，设计特征-国际标准关联-工艺标准",
+                    "end_node_type": "工艺标准(CraftStandard)"
+                },
+                {
+                    "type": "包含2(Contain2)",
+                    "description": "设计特征与模具结构组成之间的关系，设计特征-包含-模具结构组成",
+                    "end_node_type": "模具结构组成(MoldStructureComposition)"
+                },
+                {
+                    "type": "相关材料1(CorrelativeMaterial1)",
+                    "description": "设计特征与材料之间的关系，设计特征-相关材料-材料",
+                    "end_node_type": "材料(Material)"
+                },
+                {
+                    "type": "适用于1(ApplyTo1)",
+                    "description": "设计特征与工艺之间的关系，设计特征-适用于-工艺",
+                    "end_node_type": "工艺(Craft)"
+                },
+                {
+                    "type": "关联1(Association1)",
+                    "description": "设计特征与工艺之间的关系，设计特征-关联-工艺",
+                    "end_node_type": "工艺(Craft)"
+                },
+                {
+                    "type": "属于3(BelongTo3)",
+                    "description": "设计特征与工艺之间的关系，设计特征-属于-工艺",
+                    "end_node_type": "工艺(Craft)"
+                }
+            ]
+        },
+        {
+            "type": "接口标准(InterfaceStandard)",
+            "description": "模具结构设计中涉及的接口标准",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "名称"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "描述"
+                },
+                {
+                    "name": "接口类型(InterfaceType)",
+                    "type": "string",
+                    "description": "接口的种类"
+                },
+                {
+                    "name": "租户(Tenant)",
+                    "type": "string",
+                    "description": "租户"
+                },
+                {
+                    "name": "类型(Type)",
+                    "type": "string",
+                    "description": "接口的种类"
+                },
+                {
+                    "name": "应用领域(ApplicationArea)",
+                    "type": "string",
+                    "description": "标准的应用领域"
+                },
+                {
+                    "name": "标准编号(StandardNumber)",
+                    "type": "string",
+                    "description": "标准的唯一标识符"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "材料(Material)",
+            "description": "可以用来制造模具基础物质",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "名称"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "描述"
+                },
+                {
+                    "name": "热传导率(Thermal)",
+                    "type": "string",
+                    "description": "材料的热传导率，单位是W/m*k"
+                },
+                {
+                    "name": "租户(Tenant)",
+                    "type": "string",
+                    "description": "租户"
+                },
+                {
+                    "name": "标准号(StandardNumber)",
+                    "type": "string",
+                    "description": "相关材料标准的编号"
+                },
+                {
+                    "name": "HRC硬度(HardnessHRC)",
+                    "type": "string",
+                    "description": "材料经过处理后的硬度范围。"
+                },
+                {
+                    "name": "性质(Property)",
+                    "type": "string",
+                    "description": "简要描述材料的主要特性"
+                },
+                {
+                    "name": "热导率W_mk(ThermalConductivity)",
+                    "type": "number",
+                    "description": "材料的热传导能力"
+                },
+                {
+                    "name": "耐腐蚀性(CorrosionResistance)",
+                    "type": "string",
+                    "description": "材料抵抗腐蚀的能力"
+                },
+                {
+                    "name": "耐磨性(AbrasiveResistance)",
+                    "type": "string",
+                    "description": "材料在使用过程中的耐磨损能力"
+                },
+                {
+                    "name": "类型(Type)",
+                    "type": "string",
+                    "description": "材料类型，材料的基本分类，如合金工具钢、热作模具钢等。"
+                },
+                {
+                    "name": "牌号(Grade)",
+                    "type": "string",
+                    "description": "国内外通用的材料标准牌号"
+                },
+                {
+                    "name": "材料加工工艺(MaterialProcessingTechnology)",
+                    "type": "string",
+                    "description": "推荐的加工方法和工艺流程"
+                },
+                {
+                    "name": "适用模具(ApplicableMolds)",
+                    "type": "string",
+                    "description": "该材料适用于哪些类型的模具"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "直接适用2(DirectApplication2)",
+                    "description": "材料与工艺直接的关系，材料-直接适用-工艺",
+                    "end_node_type": "工艺(Craft)"
+                },
+                {
+                    "type": "间接适用2(IndirectApplication2)",
+                    "description": "材料与工艺直接的关系，材料-间接适用-工艺",
+                    "end_node_type": "工艺(Craft)"
+                },
+                {
+                    "type": "材料适配2(MaterialCompatibility2)",
+                    "description": "材料与工艺直接的关系，材料-材料适配-工艺",
+                    "end_node_type": "工艺(Craft)"
+                },
+                {
+                    "type": "替代材料2(SubstituteMaterial2)",
+                    "description": "材料与工艺直接的关系，材料-替代材料-工艺",
+                    "end_node_type": "工艺(Craft)"
+                },
+                {
+                    "type": "直接适用1(DirectApplication1)",
+                    "description": "材料和材料加工工艺之间的直接适用关系",
+                    "end_node_type": "材料加工工艺(MaterialProcessingCraft)"
+                },
+                {
+                    "type": "间接适用1(IndirectApplication1)",
+                    "description": "材料和材料加工工艺之间的间接适用关系，材料-间接适用-材料加工工艺",
+                    "end_node_type": "材料加工工艺(MaterialProcessingCraft)"
+                },
+                {
+                    "type": "材料适配1(MaterialCompatibility1)",
+                    "description": "材料和材料加工工艺之间的材料适配关系，材料-材料适配-材料加工工艺",
+                    "end_node_type": "材料加工工艺(MaterialProcessingCraft)"
+                },
+                {
+                    "type": "替代材料1(SubstituteMaterial1)",
+                    "description": "材料和材料加工工艺之间的替代材料关系",
+                    "end_node_type": "材料加工工艺(MaterialProcessingCraft)"
+                },
+                {
+                    "type": "适用1(Apply1)",
+                    "description": "材料与模具之间的关系，材料-适用-模具",
+                    "end_node_type": "模具(Mold)"
+                },
+                {
+                    "type": "适用于4(ApplyTo4)",
+                    "description": "材料与模具之间的关系，材料-适用于-模具",
+                    "end_node_type": "模具(Mold)"
+                },
+                {
+                    "type": "涵盖1(Cover1)",
+                    "description": "材料与模具之间的关系，材料-涵盖-模具",
+                    "end_node_type": "模具(Mold)"
+                },
+                {
+                    "type": "用于制造1(ManufacturedFor1)",
+                    "description": "材料与模具结构组成之间的关系，材料-用于制造-模具结构组成",
+                    "end_node_type": "模具结构组成(MoldStructureComposition)"
+                }
+            ]
+        },
+        {
+            "type": "工艺标准(CraftStandard)",
+            "description": "模具结构设计中涉及的工艺标准",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "名称"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "描述"
+                },
+                {
+                    "name": "工艺类型(CraftType)",
+                    "type": "string",
+                    "description": "工艺的种类"
+                },
+                {
+                    "name": "租户(Tenant)",
+                    "type": "string",
+                    "description": "租户"
+                },
+                {
+                    "name": "标准编号(StandardNumber)",
+                    "type": "string",
+                    "description": "标准的唯一标识符"
+                },
+                {
+                    "name": "类型(Type)",
+                    "type": "string",
+                    "description": "工艺的种类"
+                },
+                {
+                    "name": "应用领域(ApplicationArea)",
+                    "type": "string",
+                    "description": "标准的应用领域"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "材料标准(MaterialStandard)",
+            "description": "模具结构设计中涉及的材料标准",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "名称"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "描述"
+                },
+                {
+                    "name": "材料名称(MaterialName)",
+                    "type": "string",
+                    "description": "材料的正式名称"
+                },
+                {
+                    "name": "材料类型(MaterialType)",
+                    "type": "string",
+                    "description": "材料的种类"
+                },
+                {
+                    "name": "租户(Tenant)",
+                    "type": "string",
+                    "description": "租户"
+                },
+                {
+                    "name": "应用领域(ApplicationArea)",
+                    "type": "string",
+                    "description": "标准的应用领域"
+                },
+                {
+                    "name": "类型(Type)",
+                    "type": "string",
+                    "description": "材料的种类"
+                },
+                {
+                    "name": "标准编号(StandardNumber)",
+                    "type": "string",
+                    "description": "标准的唯一标识符"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "模具结构组成(MoldStructureComposition)",
+            "description": "描述模具包含的关键组件元素，如热处理，安装方式，设计参数等",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "名称"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "描述"
+                },
+                {
+                    "name": "租户(Tenant)",
+                    "type": "string",
+                    "description": "租户"
+                },
+                {
+                    "name": "设计参数(DesignParameters)",
+                    "type": "string",
+                    "description": "影响性能的关键设计参数"
+                },
+                {
+                    "name": "关联实体(AssociativeEntity)",
+                    "type": "string",
+                    "description": "与该组件配合或关联的其他组件"
+                },
+                {
+                    "name": "功能描述(FunctionalDescription)",
+                    "type": "string",
+                    "description": "该组件在模具中的功能"
+                },
+                {
+                    "name": "热处理(HeatTreatment)",
+                    "type": "string",
+                    "description": "热处理工艺及硬度要求"
+                },
+                {
+                    "name": "安装方式(InstallationMethod)",
+                    "type": "string",
+                    "description": "组件的安装或固定方式"
+                },
+                {
+                    "name": "失效模式(FailureMode)",
+                    "type": "string",
+                    "description": "常见失效形式或故障类型"
+                },
+                {
+                    "name": "类别(Type)",
+                    "type": "string",
+                    "description": "所属功能类别（如成型组件、冷却组件等）"
+                },
+                {
+                    "name": "别名(Alias)",
+                    "type": "string",
+                    "description": "常见别名或行业术语"
+                },
+                {
+                    "name": "标准依据(StandardBasis)",
+                    "type": "string",
+                    "description": "国家或行业标准依据"
+                },
+                {
+                    "name": "标准核心条款(StandardCoreClauses)",
+                    "type": "string",
+                    "description": "标准中涉及的关键技术条款"
+                },
+                {
+                    "name": "材料(Materials)",
+                    "type": "string",
+                    "description": "制造材料标准或牌号"
+                },
+                {
+                    "name": "尺寸参数(DimensionParameters)",
+                    "type": "string",
+                    "description": "主要尺寸范围或公差要求"
+                },
+                {
+                    "name": "结构形式(StructuralStyle)",
+                    "type": "string",
+                    "description": "组件的结构类型"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "替代标准1(AlternateStandard1)",
+                    "description": "模具结构组成与设计规范之间的关系，模具结构组成-替代标准-设计规范",
+                    "end_node_type": "设计规范(DesignSpecifications)"
+                },
+                {
+                    "type": "直接关联1(DirectConnection1)",
+                    "description": "模具结构组成与设计规范之间的关系，模具结构组成-直接关联-设计规范",
+                    "end_node_type": "设计规范(DesignSpecifications)"
+                },
+                {
+                    "type": "国际标准关联1(InternationalStandard1)",
+                    "description": "模具结构组成与设计规范之间的关系，模具结构组成-国际标准关联-设计规范",
+                    "end_node_type": "设计规范(DesignSpecifications)"
+                },
+                {
+                    "type": "行业标准关联1(IndustryStandard1)",
+                    "description": "模具结构组成与设计规范之间的关系，模具结构组成-行业标准关联-设计规范",
+                    "end_node_type": "设计规范(DesignSpecifications)"
+                },
+                {
+                    "type": "参考引用1(ReferenceCitation1)",
+                    "description": "模具结构组成与设计规范之间的关系，模具结构组成-参考引用-设计规范",
+                    "end_node_type": "设计规范(DesignSpecifications)"
+                },
+                {
+                    "type": "涉及相同材料1(Has_SameMaterial1)",
+                    "description": "模具结构组成与设计特征之间的关系，模具结构组成-涉及相同材料-设计特征",
+                    "end_node_type": "设计特征(DesignCharacteristic)"
+                },
+                {
+                    "type": "遵循相同标准1(Has_SameStandard1)",
+                    "description": "模具结构组成与设计特征之间的关系，模具结构组成-遵循相同标准-设计特征",
+                    "end_node_type": "设计特征(DesignCharacteristic)"
+                },
+                {
+                    "type": "配合1(Cooperate1)",
+                    "description": "描述两个模具结构组成之间的关系，模具结构组成-配合-模具结构组成",
+                    "end_node_type": "模具结构组成(MoldStructureComposition)"
+                }
+            ]
+        },
+        {
+            "type": "工艺(Craft)",
+            "description": "模具所使用的具体制造工艺",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "名称"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "描述"
+                },
+                {
+                    "name": "租户(Tenant)",
+                    "type": "string",
+                    "description": "租户"
+                },
+                {
+                    "name": "材料(Materials)",
+                    "type": "string",
+                    "description": "常用模具制造材料"
+                },
+                {
+                    "name": "模具类型(MoldType)",
+                    "type": "string",
+                    "description": "根据工艺需求设计的模具种类"
+                },
+                {
+                    "name": "工艺过程描述(ProcessDescription)",
+                    "type": "string",
+                    "description": "工艺成型的具体过程"
+                },
+                {
+                    "name": "类型(Type)",
+                    "type": "string",
+                    "description": "工艺类型"
+                },
+                {
+                    "name": "工艺参数(CraftParameters)",
+                    "type": "string",
+                    "description": "工艺包含的各种参数"
+                },
+                {
+                    "name": "模具材质(MoldMaterials)",
+                    "type": "string",
+                    "description": "根据工艺需求设计的模具所用材质"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "可选(Choosable)",
+                    "description": "描述工艺与设计特征之间的关系，工艺-可选-设计特征",
+                    "end_node_type": "设计特征(DesignCharacteristic)"
+                },
+                {
+                    "type": "必备(Essential)",
+                    "description": "描述工艺与设计特征之间的关系，工艺-必备-设计特征",
+                    "end_node_type": "设计特征(DesignCharacteristic)"
+                }
+            ]
+        },
+        {
+            "type": "设计公差标准(DesignToleranceStandard)",
+            "description": "模具结构设计过程中涉及的设计公差标准",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "名称"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "描述"
+                },
+                {
+                    "name": "租户(Tenant)",
+                    "type": "string",
+                    "description": "租户"
+                },
+                {
+                    "name": "公差值_mm(ToleranceValueMM)",
+                    "type": "string",
+                    "description": "公差的具体数值"
+                },
+                {
+                    "name": "标准编号(StandardNumber)",
+                    "type": "string",
+                    "description": "标准的唯一标识符"
+                },
+                {
+                    "name": "模具类型(MoldType)",
+                    "type": "string",
+                    "description": "模具的种类"
+                },
+                {
+                    "name": "类型(Type)",
+                    "type": "string",
+                    "description": "标准的主要内容和技术要求"
+                },
+                {
+                    "name": "公差等级(ToleranceLevel)",
+                    "type": "string",
+                    "description": "公差的具体等级"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "模具类型(MoldType)",
+            "description": "按工艺、成型方式，区分描述模具的具体类型，如冲压成型模具、分离模等",
+            "properties": [
+                {
+                    "name": "名称(Name)",
+                    "type": "string",
+                    "description": "名称"
+                },
+                {
+                    "name": "描述(Description)",
+                    "type": "string",
+                    "description": "描述"
+                },
+                {
+                    "name": "租户(Tenant)",
+                    "type": "string",
+                    "description": "租户"
+                },
+                {
+                    "name": "模具类型上级类型(SuperiorMoldType)",
+                    "type": "string",
+                    "description": "模具类型所属的上级模具类型"
+                }
+            ],
+            "required": [
+                "名称(Name)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "属于6(BelongTo6)",
+                    "description": "模具类型与模具类型之间的关系，模具类型-属于-模具类型",
+                    "end_node_type": "模具类型(MoldType)"
+                }
+            ]
+        },
+        {
+            "type": "nan(nan)",
+            "description": "",
+            "properties": [],
+            "required": [],
+            "outgoing_relations": []
+        }
+    ]
+}

@@ -1,0 +1,352 @@
+{
+    "schema_definitions": [
+        {
+            "type": "AestheticParameter(美学参数)",
+            "description": "Represents quantifiable parameters defining the aesthetics of a car design.",
+            "properties": {
+                "parameterName(名称)": "string",
+                "definition(参数定义)": "string",
+                "weight(权重)": "number"
+            },
+            "required": [
+                "parameterName(名称)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "ConsistsOf(组成)",
+                    "description": "Represents hierarchical composition between aesthetic parameters.",
+                    "end_node_type": "AestheticParameter(美学参数)"
+                },
+                {
+                    "type": "DefinesVisualFeeling(定义视觉感受)",
+                    "description": "Links aesthetic parameter to the visual feeling defined in a design attribute.",
+                    "end_node_type": "DesignAttribute(设计属性)"
+                },
+                {
+                    "type": "Indicates(表明)",
+                    "description": "Specifies the car posture indicated by an aesthetic parameter.",
+                    "end_node_type": "VehiclePosture(汽车姿态)"
+                },
+                {
+                    "type": "InfluencesParameter(影响美学参数)",
+                    "description": "Denotes influence from this aesthetic parameter to another aesthetic parameter.",
+                    "end_node_type": "AestheticParameter(美学参数)"
+                },
+                {
+                    "type": "InfluencesDesignParam(影响设计参数)",
+                    "description": "Denotes influence from this aesthetic parameter to a design parameter.",
+                    "end_node_type": "DesignParameter(设计参数)"
+                },
+                {
+                    "type": "InfluencesConcept(影响美学概念)",
+                    "description": "Denotes influence from this aesthetic parameter to an aesthetic concept.",
+                    "end_node_type": "AestheticConcept(美学概念)"
+                },
+                {
+                    "type": "Requires(需要)",
+                    "description": "Specifies that an aesthetic parameter requires a particular aesthetic concept.",
+                    "end_node_type": "AestheticConcept(美学概念)"
+                },
+                {
+                    "type": "ParameterDefinition(参数定义)",
+                    "description": "Defines the hierarchical relationship translating parameter definition between aesthetic parameters.",
+                    "end_node_type": "AestheticParameter(美学参数)"
+                },
+                {
+                    "type": "ParameterEffect(参数效果)",
+                    "description": "Links an aesthetic parameter to its effect on an aesthetic concept.",
+                    "end_node_type": "AestheticConcept(美学概念)"
+                },
+                {
+                    "type": "GeneratesLightShadow(生成光影特征)",
+                    "description": "Indicates generation of light and shadow features from an aesthetic parameter.",
+                    "end_node_type": "LightShadowFeature(光影特征)"
+                }
+            ]
+        },
+        {
+            "type": "UserPersona(用户画像)",
+            "description": "Defines a target user segment and their expectations for the vehicle design.",
+            "properties": {
+                "personaName(画像名称)": "string",
+                "targetDemographic(目标人群)": "string",
+                "preferences(偏好)": "string"
+            },
+            "required": [
+                "personaName(画像名称)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "FocusesOn(关注)",
+                    "description": "Represents that a user persona focuses on a specific design attribute.",
+                    "end_node_type": "DesignAttribute(设计属性)"
+                }
+            ]
+        },
+        {
+            "type": "DesignParameter(设计参数)",
+            "description": "Engineering or styling parameters that can be adjusted in the design process.",
+            "properties": {
+                "parameterName(参数名称)": "string",
+                "range(范围)": "string",
+                "unit(单位)": "string"
+            },
+            "required": [
+                "parameterName(参数名称)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "AffectsAttribute(影响属性)",
+                    "description": "Indicates that a design parameter affects a design attribute.",
+                    "end_node_type": "DesignAttribute(设计属性)"
+                },
+                {
+                    "type": "HasDimension(具有维度)",
+                    "description": "Associates a design parameter with its geometric dimension.",
+                    "end_node_type": "Dimension(维度)"
+                }
+            ]
+        },
+        {
+            "type": "Dimension(维度)",
+            "description": "Geometric measurements and proportions in the design.",
+            "properties": {
+                "dimensionName(维度名称)": "string",
+                "value(数值)": "number",
+                "unit(单位)": "string"
+            },
+            "required": [
+                "dimensionName(维度名称)",
+                "value(数值)",
+                "unit(单位)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "DesignAttribute(设计属性)",
+            "description": "Visual and functional attributes of the car styling that are influenced by parameters.",
+            "properties": {
+                "attributeName(属性名称)": "string",
+                "description(描述)": "string"
+            },
+            "required": [
+                "attributeName(属性名称)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "ExpressesConcept(表达概念)",
+                    "description": "Indicates that a design attribute expresses or embodies an aesthetic concept.",
+                    "end_node_type": "AestheticConcept(美学概念)"
+                }
+            ]
+        },
+        {
+            "type": "AestheticConcept(美学概念)",
+            "description": "High-level design ideas or themes that guide styling choices.",
+            "properties": {
+                "conceptName(概念名称)": "string",
+                "description(描述)": "string"
+            },
+            "required": [
+                "conceptName(概念名称)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "DefinesDNA(定义DNA)",
+                    "description": "Specifies that an aesthetic concept defines the family DNA.",
+                    "end_node_type": "FamilyDNA(家族DNA)"
+                },
+                {
+                    "type": "InspiresDigitalModel(启发数字模型)",
+                    "description": "Indicates that an aesthetic concept inspires the creation of a digital model.",
+                    "end_node_type": "DigitalModel(数字模型)"
+                }
+            ]
+        },
+        {
+            "type": "VehiclePosture(汽车姿态)",
+            "description": "The overall posture or stance of the vehicle as perceived visually.",
+            "properties": {
+                "postureName(姿态名称)": "string",
+                "description(描述)": "string"
+            },
+            "required": [
+                "postureName(姿态名称)"
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "Trend(趋势)",
+            "description": "Styling trends or market directions influencing design decisions.",
+            "properties": {
+                "trendName(趋势名称)": "string",
+                "period(周期)": "string",
+                "influenceStrength(影响强度)": "number"
+            },
+            "required": [
+                "trendName(趋势名称)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "InfluencesAesthetic(影响美学参数)",
+                    "description": "Represents that a market or styling trend influences aesthetic parameters.",
+                    "end_node_type": "AestheticParameter(美学参数)"
+                },
+                {
+                    "type": "InfluencesAttribute(影响设计属性)",
+                    "description": "Represents that a market or styling trend influences design attributes.",
+                    "end_node_type": "DesignAttribute(设计属性)"
+                },
+                {
+                    "type": "DrivesDigitalModel(驱动数字模型)",
+                    "description": "Indicates that a market trend drives the creation or update of a digital model.",
+                    "end_node_type": "DigitalModel(数字模型)"
+                }
+            ]
+        },
+        {
+            "type": "LightShadowFeature(光影特征)",
+            "description": "Features related to the distribution and contrast of light and shadow on surfaces.",
+            "properties": {
+                "featureName(特征名称)": "string",
+                "intensityDistribution(强度分布)": "string",
+                "contrastRatio(对比度比)": "number"
+            },
+            "required": [
+                "featureName(特征名称)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "AffectsSurfaceContinuity(影响曲面连续性)",
+                    "description": "Represents effect of light and shadow features on surface continuity.",
+                    "end_node_type": "SurfaceContinuity(曲面连续性)"
+                }
+            ]
+        },
+        {
+            "type": "ParametricCurve(参数曲线)",
+            "description": "Mathematically controlled curves used to define surface shapes.",
+            "properties": {
+                "curveType(曲线类型)": "string",
+                "controlPoints(控制点)": "string",
+                "degree(次数)": "number",
+                "parameters(参数)": "string"
+            },
+            "required": [
+                "curveType(曲线类型)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "EnsuresContinuity(保证连续性)",
+                    "description": "Denotes that a parametric curve ensures smooth surface continuity.",
+                    "end_node_type": "SurfaceContinuity(曲面连续性)"
+                },
+                {
+                    "type": "SubjectToConstraint(受约束)",
+                    "description": "Indicates that a parametric curve is subject to a stamping constraint.",
+                    "end_node_type": "StampingConstraint(冲压约束)"
+                }
+            ]
+        },
+        {
+            "type": "StampingConstraint(冲压约束)",
+            "description": "Manufacturing constraints arising from sheet metal stamping processes.",
+            "properties": {
+                "constraintName(约束名称)": "string",
+                "pressureLimit(压力极限)": "number",
+                "materialThicknessLimit(材料厚度极限)": "number"
+            },
+            "required": [
+                "constraintName(约束名称)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "ConstrainsSurface(约束曲面)",
+                    "description": "Represents that a stamping constraint constrains surface continuity.",
+                    "end_node_type": "SurfaceContinuity(曲面连续性)"
+                },
+                {
+                    "type": "AppliedIn(应用于)",
+                    "description": "Represents application of a stamping constraint in a manufacturing process.",
+                    "end_node_type": "ManufacturingProcess(制造工艺)"
+                }
+            ]
+        },
+        {
+            "type": "SurfaceContinuity(曲面连续性)",
+            "description": "Quality level of smooth transition between adjoining surfaces (e.g., G0, G1, G2).",
+            "properties": {
+                "continuityGLevel(连续性G级别)": "string",
+                "transitionSmoothness(过渡光滑度)": "string"
+            },
+            "required": [
+            ],
+            "outgoing_relations": []
+        },
+        {
+            "type": "FamilyDNA(家族DNA)",
+            "description": "Core design elements and motifs that define a vehicle family’s identity.",
+            "properties": {
+                "familyName(家族名称)": "string",
+                "keyFeatures(关键特征)": "string"
+            },
+            "required": [
+                "familyName(家族名称)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "GuidesCurve(引导曲线)",
+                    "description": "Represents guidance of parametric curves by a design family DNA.",
+                    "end_node_type": "ParametricCurve(参数曲线)"
+                },
+                {
+                    "type": "TransmitsDesignLanguage(传递设计语言)",
+                    "description": "Denotes transmission of design language from family DNA to an aesthetic concept.",
+                    "end_node_type": "AestheticConcept(美学概念)"
+                }
+            ]
+        },
+        {
+            "type": "DigitalModel(数字模型)",
+            "description": "Parametric or CAD model used to realize design concepts digitally.",
+            "properties": {
+                "modelName(模型名称)": "string",
+                "softwareUsed(使用软件)": "string",
+                "fileFormat(文件格式)": "string",
+                "parametricAssociativity(参数关联性)": "string"
+            },
+            "required": [
+                "modelName(模型名称)"
+            ],
+            "outgoing_relations": [
+                {
+                    "type": "ImplementsCurve(实现曲线)",
+                    "description": "Specifies that a digital model implements a parametric curve.",
+                    "end_node_type": "ParametricCurve(参数曲线)"
+                },
+                {
+                    "type": "EnforcesConstraint(执行约束)",
+                    "description": "Denotes that a digital model enforces a stamping constraint.",
+                    "end_node_type": "StampingConstraint(冲压约束)"
+                },
+                {
+                    "type": "DrivesManufacturing(驱动制造)",
+                    "description": "Denotes that a digital model drives the manufacturing process.",
+                    "end_node_type": "ManufacturingProcess(制造工艺)"
+                }
+            ]
+        },
+        {
+            "type": "ManufacturingProcess(制造工艺)",
+            "description": "Engineering processes and workflows for producing the designed surfaces.",
+            "properties": {
+                "processName(工艺名称)": "string",
+                "requiredEquipment(所需设备)": "string"
+            },
+            "required": [
+                "processName(工艺名称)"
+            ],
+            "outgoing_relations": []
+        }
+    ]
+}

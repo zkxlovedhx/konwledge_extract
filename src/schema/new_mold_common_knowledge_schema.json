@@ -1,0 +1,402 @@
+{
+  "schema_definitions": [
+    {
+      "type": "模具零部件(MoldComponent)",
+      "description": "模具零部件实体，指构成模具的各种组件。",
+      "properties": [
+        {
+          "name": "零部件名称(component_name)",
+          "type": "string",
+          "description": "模具组件的通用名称，例如：“导向件”、“定位销”。这是实体的唯一标识"
+        },
+        {
+          "name": "别名(alias)",
+          "type": "string",
+          "description": "该零部件的常用别名或在某些地区/语境下的不同叫法"
+        },
+        {
+          "name": "描述(description)",
+          "type": "string",
+          "description": "对零部件的详细说明，通常是文档中的一段完整文字描述"
+        },
+        {
+          "name": "设计参数(design_parameters)",
+          "type": "Dict",
+          "description": "与设计相关的关键参数，例如：{\"行程空间\": \"350mm\"}。"
+        },
+
+        {
+          "name": "标准依据(standard_basis)",
+          "type": "string",
+          "description": "参考的国家/国际标准或企业规范"
+        },
+        {
+          "name": "功能(Function)",
+          "type": "string",
+          "description": "该零部件在模具中的主要作用，例如：“起导向作用”、“对已冲孔的模具内零件起定位作用”。"
+        },
+        {
+          "name": "分类(category)",
+          "type": "string",
+          "description": "零部件所属的大类，用于归类和组织知识，如：'导向件', '定位件', '弹性元件'。"
+        },
+        {
+          "name": "是否标准件(is_standard_part)",
+          "type": "boolean",
+          "description": "该零件是否为标准件。"
+        },
+        {
+          "name": "特点(feature)",
+          "type": "List<String>",
+          "description": "零部件的固有特性或行为，例如：“一旦定住就不好调整”、“力量大行程小”。"
+        },
+        {
+          "name": "产品(product_model)",
+          "type": "List<String>",
+          "description": "该零部件的具体产品型号/品牌。例如：“NNGNA”、“SANKYO”。"
+        }
+      ],
+      "required": [
+        "零部件名称(componentName)"
+      ],
+      "outgoing_relations": [
+        {
+          "type": "尺寸特征(HasSizeFeaturev)",
+          "description": "描述零部件的设计尺寸需要满足特定设计要素，例如：快换凸模具有尺寸特征可互换。",
+          "end_node_type": "模具设计要素(MoldDesignElement)"
+        },
+        {
+          "type": "几何特征(HasGeometricFeature)",
+          "description": "描述零部件的形状和结构特点需要满足特定设计要素，例如：导柱具有几何特征圆柱形，以满足导向精度的要求。",
+          "end_node_type": "模具设计要素(MoldDesignElement)"
+        },
+        {
+          "type": "运动关系(HasMotionRelationship)",
+          "description": "描述零部件在模具中实现特定的运动方式，以满足某种设计要素，例如：导柱、导套具备运动关系直线往复运动，以实现高对中精度。",
+          "end_node_type": "模具设计要素(MoldDesignElement)"
+        },
+        {
+          "type": "由...制成(MadeOf)",
+          "description": "描述零部件的制造材料，如：卸料板由钢制成",
+          "end_node_type": "材料(Material)"
+        }
+      ]
+    },
+    {
+      "type": "模具类型(MoldType)",
+      "description": "模具类型实体，指各种模具的种类。",
+      "properties": [
+        {
+          "name": "模具名称(mold_name)",
+          "type": "string",
+          "description": "模具的通用名称，例如：“拉延模”、“落料模”"
+        },
+        {
+          "name": "一级分类(primary_category)",
+          "type": "string",
+          "description": "模具大类"
+        },
+        {
+          "name": "二级分类(secondary_category)",
+          "type": "string",
+          "description": "根据最宏观的分类标准对模具进行的划分，如按工序性质分为“冲裁模”、“弯曲模”，或按工序组合程度分为“单工序模”、“级进模”等"
+        },
+        {
+          "name": "核心技术特征(core_technical_features)",
+          "type": "List<String>",
+          "description": "模具的设计的主要技术特征"
+        },
+        {
+          "name": "组成组件(component_composition)",
+          "type": "List<String>",
+          "description": "模具结构组成的组件"
+        },
+        {
+          "name": "适用材料(applicable_materials)",
+          "type": "List<String>",
+          "description": "模具适用的材料"
+        },
+        {
+          "name": "成型工艺(forming_process)",
+          "type": "string",
+          "description": "模具的成型工艺方式"
+        },
+
+        {
+          "name": "适用场景(application_scenario)",
+          "type": "string",
+          "description": "模具主要应用于的生产环境、产品类型或工艺，例如：“半自动化冲压线”"
+        },
+        {
+          "name": "特点(feature)",
+          "type": "List<String>",
+          "description": "模具的显著设计或工作特性，例如：“侧向力高”、“导柱、导套可以单独使用”"
+        },
+        {
+          "name": "标准依据(standard_basis)",
+          "type": "string",
+          "description": "参考的国家/国际标准或企业规范"
+        },
+        {
+          "name": "标准核心条款(standard_core_clauses)",
+          "type": "List<String>",
+          "description": "本模具适用的国家/国际或企业规范标准的核心条款"
+        },
+        {
+          "name": "典型应用领域(typical_application_fields)",
+          "type": "string",
+          "description": "典型应用的领域"
+        }
+      ],
+      "required": [
+        "模具名称(mold_name)"
+      ],
+      "outgoing_relations": [
+        {
+          "type": "可选结构(OptionalStructure)",
+          "description": "描描述某种模具类型在设计或功能上可选的零部件,如注塑模可选结构热流道",
+          "end_node_type": "模具零部件(MoldComponent)"
+        },
+        {
+          "type": "禁用结构(DisabledStructure)",
+          "description": "描描述某种模具类型在设计或功能上禁用的零部件，如：吹塑模禁用结构顶针",
+          "end_node_type": "模具零部件(MoldComponent)"
+        },
+        {
+          "type": "需要(Requires)",
+          "description": "描描述某种模具类型在设计或功能上所必需的零部件，如：落料模需要导料板",
+          "end_node_type": "模具零部件(MoldComponent)"
+        },
+        {
+          "type": "具有(Has)",
+          "description": "描述模具所具备的设计特点，如：汽车冲模具有侧向力高",
+          "end_node_type": "模具设计要素(MoldDesignElement)"
+        }
+      ]
+    },
+    {
+      "type": "模具设计要素(MoldDesignElement)",
+      "description": "模具设计要素实体，指模具设计中需要考虑的关键因素",
+      "properties": [
+        {
+          "name": "设计要素名称(element_name)",
+          "type": "string",
+          "description": "设计中需要考虑的关键概念，如“互换性”、“导向精度”"
+        },
+        {
+          "name": "设计要素描述(description)",
+          "type": "string",
+          "description": "对该设计要素的详细解释"
+        },
+        {
+          "name": "影响因素(influencing_factors)",
+          "type": "List<String>",
+          "description": "影响该要素的外部或内部因素"
+        },
+        {
+          "name": "约束条件(constraint)",
+          "type": "String",
+          "description": "设计或操作中必须遵守的限制"
+        }
+      ],
+      "required": [
+        "设计要素名称(element_name)"
+      ],
+      "outgoing_relations": []
+    },
+    {
+      "type": "材料(Material)",
+      "description": "模具零部件所使用的材料实体",
+      "properties": [
+        {
+          "name": "材质名称(material_name)",
+          "type": "string",
+          "description": "模具零部件所使用的材料名称，如“钢”、“聚胺脂”"
+        },
+        {
+          "name": "特性(property)",
+          "type": "List<String>",
+          "description": "材质的物理或化学特性，如“弹性好”、“耐磨性强”"
+        },
+        {
+          "name": "材料类别(material_category)",
+          "type": "string",
+          "description": "材料所属的大类"
+        },
+        {
+          "name": "牌号(brand_name)",
+          "type": "string",
+          "description": "材料的牌号"
+        },
+        {
+          "name": "标准号(standard_number)",
+          "type": "string",
+          "description": "材料的标准号"
+        },
+        {
+          "name": "工作硬度(working_hardness)",
+          "type": "string",
+          "description": "材料的工作硬度"
+        },
+        {
+          "name": "热导率(thermal_conductivity)",
+          "type": "string",
+          "description": "材料的热导率"
+        },
+        {
+          "name": "耐腐蚀性(corrosion_resistance)",
+          "type": "string",
+          "description": "材料的耐腐蚀性"
+        },
+        {
+          "name": "耐磨性(wear_resistance)",
+          "type": "string",
+          "description": "材料的耐磨性"
+        },
+        {
+          "name": "适用工艺(applicable_process)",
+          "type": "string",
+          "description": "材料适用的工艺"
+        }
+      ],
+      "required": [
+        "材质名称(material_name)"
+      ],
+      "outgoing_relations": [
+        
+        {
+          "type": "材料适用性(MaterialApplicability)",
+          "description": "材料对工艺的影响",
+          "end_node_type": "工艺(Process)"
+        },
+        {
+          "type": "热匹配性(ThermalMatching)",
+          "description": "材料对工艺的热匹配性",
+          "end_node_type": "工艺(Process)"
+        },
+        {
+          "type": "加工限制(ProcessingLimitations)",
+          "description": "",
+          "end_node_type": "工艺(Process)"
+        },
+        {
+          "type": "材料适用性(MaterialApplicability)",
+          "description": "材料对模具零部件的适用性",  
+          "end_node_type": "模具零部件(MoldComponent)"
+        },
+        {
+          "type": "热匹配性(ThermalMatching)",
+          "description": "材料对工艺的热匹配性",    
+          "end_node_type": "模具零部件(MoldComponent)"
+        },
+        {
+          "type": "加工限制(ProcessingLimitations)",
+          "description": "材料对加工的限制",
+          "end_node_type": "模具零部件(MoldComponent)"
+        }
+      ]
+    },
+    {
+      "type": "设计特征(DesignFeature)",
+      "description": "描述设计中的几何或结构特性。",
+      "properties": [
+        {
+          "name": "特征类型名称(feature_name)",
+          "type": "string",
+          "description": "设计特征的名称，例如：圆柱、拉伸。"
+        },
+        {
+          "name": "主要参数(main_parameters)",
+          "type": "Dict",
+          "description": "该特征的关键参数，例如：{\"长度\": \"100mm\", \"宽度\": \"50mm\"}。"
+        },
+        {
+          "name": "特征依赖(feature_dependencies)",
+          "type": "string",
+          "description": "该特征所依赖的其他设计元素或参考，例如：基准坐标系。"
+        }
+      ],
+      "required": [
+        "特征类型名称(feature_name)"
+      ],
+      "outgoing_relations": []
+    },
+    {
+      "type": "工艺(Process)",
+      "description": "描述模具制造和成型过程中的工艺方法。",
+      "properties": [
+        {
+          "name": "工艺名称(process_name)",
+          "type": "string",
+          "description": "工艺的名称，例如：冲压成型、注塑成型。"
+        },
+        {
+          "name": "工艺类型(process_type)",
+          "type": "string",
+          "description": "工艺的类型，例如：金属成形、塑料成形。"
+        },
+        {
+          "name": "工艺参数(process_parameters)",
+          "type": "Dict",
+          "description": "工艺中的关键参数，例如：{\"注射压力\": \"80-200 MPa\"}。"
+        },
+        {
+          "name": "工艺过程(process_steps)",
+          "type": "List<String>",
+          "description": "工艺的详细步骤描述,例如：将金属板放置在冲床下模，上模下降并施加压力"
+        }
+      ],
+      "required": [
+        "工艺名称(process_name)"
+      ],
+      "outgoing_relations": [
+        {
+          "type": "参数依赖(ParameterDependency)",
+          "description": "描述工艺参数对设计特征的影响",
+          "end_node_type": "设计特征(DesignFeature)"
+        },
+        {
+          "type": "质量影响(QualityImpact)",
+          "description": "描述工艺参数对设计特征的质量影响",
+          "end_node_type": "设计特征(DesignFeature)"
+        },
+        {
+          "type": "优化目标(OptimizationTarget)",
+          "description": "描述工艺参数对设计特征的优化目标",
+          "end_node_type": "设计特征(DesignFeature)"
+        }
+
+      ]
+    },
+    {
+      "type": "标准(Standard)",
+      "description": "描述模具设计、制造和材料相关的规范和标准。",
+      "properties": [
+        {
+          "name": "标准名称(standard_name)",
+          "type": "string",
+          "description": "标准的名称，例如：ISO 12165等"
+        },
+        {
+          "name": "标准类型(standard_type)",
+          "type": "string",
+          "description": "标准的类型，例如：国际标准、国家标准。"
+        },
+        {
+          "name": "标准编号(standard_number)",
+          "type": "string",
+          "description": "标准的编号。例如：GB/T 706-2016等"
+        },
+        {
+          "name": "描述(description)",
+          "type": "string",
+          "description": "标准的详细描述。例如：规定了热轧普通工字钢的尺寸、外形、重量及允许偏差等技术要求。"
+        }
+      ],
+      "required": [
+        "标准名称(standard_name)"
+      ],
+      "outgoing_relations": []
+    }
+  ]
+}
